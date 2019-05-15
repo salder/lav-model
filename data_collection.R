@@ -28,70 +28,70 @@ mapview(t1.b)
 p.df <- data.frame( ID=1:length(t1.b)) 
 pid <- sapply(slot(t1.b, "polygons"), function(x) slot(x, "ID")) 
 p.df <- data.frame( ID=1:length(t1.b), row.names = pid)    
-
 # Try coersion again and check class
 t1.sp <- SpatialPolygonsDataFrame(t1.b, p.df)
-writeOGR(obj=t1.sp,dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model", layer="varvinter", driver="ESRI Shapefile")
+writeOGR(obj=t1.sp,dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1", layer="varvinter", driver="ESRI Shapefile")
+#roads<-readOGR("D:/UMEA/Renbruksplan/fastighetskartan","vl_riks") #tar tid, sparas som rds men tar bort efter projektet är färdig och måste skapas på nyt därefter
+#saveRDS(roads,"D:/UMEA/Renbruksplan/roads.rds")
 
 
 
 
+#########################################################################################
+#design
+#
+#
+#########################################################################################
+
+
+lav.model<-raster("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav_model_south.tif")
+roads_all<-readRDS("D:/UMEA/Renbruksplan/roads.rds")
+
+t1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1","varvinter")
 sameby<-readOGR("C:/Users/Public/Documents/RenGIS/iRenMark/LstGIS.2018-02-19/Samebyarnas betesområden","IRENMARK_DBO_sameby")
 #combine the polygones
 
 head(sameby@data)
 sameby@data$NAMN
-sb<-subset(sameby,NAMN=="MittÃ¥dalen")
-sb<-subset(sameby,NAMN=="HandÃ¶lsdalen")
-sb<-subset(sameby,NAMN=="Vilhelmina norra")
-"Ohredahke"
-"tåssåsen"
-"idre"
-"Jijnjevaerie"
-"Ruvhten"
 
-sb_vinterbete<-gIntersection(sb,vinter)
-
-
-mapview(sb)+mapview(sb_vinterbete,col.regions ="red")
-
-plot(sb)
-plot(lav.model,add=T)
-plot(sb,add=T)
+sameby.deltagare<-c("MittÃ¥dalen","HandÃ¶lsdalen","TÃ¥ssÃ¥sen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina norra","Ruvhten sijte")
+sameby.name<-c("Mittadalen","Handalsdalen","Tassasen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina_norra","Ruvhten_sijte")
 
 e_mitt<-extent(c(401362.1,459576.7,6859037,6925422))
-e_hand<-extent(c(392387.5,484523.6,6855647,6960565))
-e_vil.norr<-
-e_idre<-
-e_toss
-e_ohre<-
-e_jijin<-
-e_ruv<-
-
-e1<-list(e_mitt,e_hand)
-
-
-
-lav.model<-raster("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav_model_south.tif")
-#roads<-readOGR("D:/UMEA/Renbruksplan/fastighetskartan","vl_riks") #tar tid, sparas som rds men tar bort efter projektet är färdig och måste skapas på nyt därefter
-#saveRDS(roads,"D:/UMEA/Renbruksplan/roads.rds")
-roads<-readDRS("D:/UMEA/Renbruksplan/roads.rds")
-plot(lav.model)
-plot(sb,add=T)
+e_hand<-extent(c(399843.6,485588.8,6856712,6978140))
+e_toss<-extent(c(405201.9,500236.7,6875682,6975056))
+e_jijin<-extent(c(445821.7,653488,6889579,7149937))
+e_idre<-extent(c(346611.8,437680.8,6814134 ,6890618))
+e_ohre<-extent(c(456238,659610.3, 6896264,7192462))
+e_vil.norr<-NA
+e_ruv<-NA
+  
+e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
 
 
 
 
 
-sb_extent<-2
-roads<-crop(roads,e1[[sb_extent]])
+
+n.sb<-3
+
+for (n.sb in c(1:6))
+{
+sb<-subset(sameby,NAMN==sameby.deltagare[n.sb])
+sb_vinterbete<-gIntersection(sb,t1)
+#mapview(sb)+mapview(varvinter,col.regions ="red")
+
+plot(sb)
+#plot(lav.model,add=T)
+plot(sb_vinterbete,add=T,col=2)
+plot(e1[[n.sb]],add=T)
 
 
-
+roads<-crop(roads_all,e1[[n.sb]])
 lav.sb<-crop(lav.model,extent(sb))
-sb_vinterbete<-gIntersection(sb,vinter)
+
 lav.vinter<-mask(lav.sb,sb_vinterbete)
-lav.vinter<-crop(lav.vinter,e1[[sb_extent]])
+lav.vinter<-crop(lav.vinter,e1[[n.sb]])
 
 
 pred<-getValues(lav.vinter)
@@ -126,6 +126,10 @@ for (j in c(1:dim(X1)[1]))
 X1$m_ej<-m_ej
 X1$sd_ej<-sd_ej
 X1$max_ej<-max_ej
+
+saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_first_selection_data.rds",sep=""))
+
+
 
 library(BalancedSampling)
 
@@ -178,9 +182,14 @@ for (j in c(1:n_r))
 }
 X_slut$py<-c(1:length(X_slut$ruta))
 X_slut$id<-paste(X_slut$ruta,"_",X_slut$py,sep="")
-saveRDS(X_slut,"D:/UMEA/Renbruksplan/Lavprojekt_2019/Mittadalen.rds")
+saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
+
+
+
 X_slut.sp<-SpatialPointsDataFrame(coords=X_slut[,c("x","y")],data=X_slut,proj4string=CRS(projSWEREF))
-writeOGR(obj=X_slut.sp, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019", layer="Mittadalen_sample", driver="ESRI Shapefile")
+writeOGR(obj=X_slut.sp, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=sameby.name[n.sb], driver="ESRI Shapefile")
+writeOGR(sb, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border"), driver="ESRI Shapefile")
+
 
 X_slut.sprt99<-spTransform(X_slut.sp,CRS("+init=epsg:3021 +towgs84=414.0978567149,41.3381489658,603.0627177516,-0.8550434314,2.1413465,-7.0227209516,0 +no_defs"))
 X_slut$x_rt90<-coordinates(X_slut.sprt99)[,1]
@@ -189,11 +198,16 @@ X_slut$y_rt90<-coordinates(X_slut.sprt99)[,2]
 dat1.sp<-spTransform(X_slut.sp,CRS("+init=epsg:2400"))
 dat2.sp<-spTransform(dat1.sp,CRS("+init=epsg:4326"))
 
+
 X_slut$x_WGS84<-coordinates(dat2.sp)[,1]
 X_slut$yWGS84<-coordinates(dat2.sp)[,2]
 
-saveRDS(X_slut,"D:/UMEA/Renbruksplan/Lavprojekt_2019/Mittadalen.rds")
-write.csv(X_slut,"D:/UMEA/Renbruksplan/Lavprojekt_2019/Mittadalen.csv")
+saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
+write.csv(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".csv",sep=""))
+
+}
+
+
 
 mapview(sb,color="red",col.regions ="white",lwd=2,alpha.regions = 0.1)+mapview(lav.vinter)
 mapview(lav.vinter)
