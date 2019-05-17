@@ -31,6 +31,7 @@ p.df <- data.frame( ID=1:length(t1.b), row.names = pid)
 # Try coersion again and check class
 t1.sp <- SpatialPolygonsDataFrame(t1.b, p.df)
 writeOGR(obj=t1.sp,dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1", layer="varvinter", driver="ESRI Shapefile")
+
 #roads<-readOGR("D:/UMEA/Renbruksplan/fastighetskartan","vl_riks") #tar tid, sparas som rds men tar bort efter projektet är färdig och måste skapas på nyt därefter
 #saveRDS(roads,"D:/UMEA/Renbruksplan/roads.rds")
 
@@ -57,13 +58,21 @@ sameby@data$NAMN
 sameby.deltagare<-c("MittÃ¥dalen","HandÃ¶lsdalen","TÃ¥ssÃ¥sen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina norra","Ruvhten sijte")
 sameby.name<-c("Mittadalen","Handalsdalen","Tassasen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina_norra","Ruvhten_sijte")
 
+
+
+ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Ohredahke/Ohredahke.20190516.091129","Ohredahke bete")
+ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
+
+
+
+
 e_mitt<-extent(c(401362.1,459576.7,6859037,6925422))
 e_hand<-extent(c(399843.6,485588.8,6856712,6978140))
 e_toss<-extent(c(405201.9,500236.7,6875682,6975056))
 e_jijin<-extent(c(445821.7,653488,6889579,7149937))
 e_idre<-extent(c(346611.8,437680.8,6814134 ,6890618))
-e_ohre<-extent(c(456238,659610.3, 6896264,7192462))
-e_vil.norr<-NA
+e_ohre<-extent(c(486617.3,656234.9, 6929175,7076852))
+e_vil.norr<-extent(c(605985.4,730699.8,7002191,7127639))
 e_ruv<-NA
   
 e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
@@ -73,7 +82,7 @@ e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
 
 
 
-n.sb<-3
+n.sb<-6
 
 for (n.sb in c(1:6))
 {
@@ -84,6 +93,10 @@ sb_vinterbete<-gIntersection(sb,t1)
 plot(sb)
 #plot(lav.model,add=T)
 plot(sb_vinterbete,add=T,col=2)
+if (n.sb==6)
+{  
+  sb_vinterbete<-gIntersection(sb,ohre_bete)}
+  
 plot(e1[[n.sb]],add=T)
 
 
@@ -115,7 +128,7 @@ for (j in c(1:dim(X1)[1]))
     crop_ej<-mask(crop_ej,buffer(roads_sel,15),inverse=TRUE)
   #if (is.null(jarnvag_sel)==FALSE)
   #  crop_ej<-mask(crop_ej,buffer(jarnvag_sel,12),inverse=TRUE)
-  plot(crop_ej)
+  plot(crop_ej,main=j)
   val_ej<-getValues(crop_ej)
   sd_ej[j]<-sd(val_ej,na.rm=T)
   m_ej[j]<-mean(val_ej,na.rm=T)
@@ -134,6 +147,10 @@ saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.na
 library(BalancedSampling)
 
 set.seed(12341386)
+
+#X1.save<-X1
+X1.save->X1
+X1<-subset(X1,m_ej>3)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
@@ -182,6 +199,7 @@ for (j in c(1:n_r))
 }
 X_slut$py<-c(1:length(X_slut$ruta))
 X_slut$id<-paste(X_slut$ruta,"_",X_slut$py,sep="")
+View(X_slut)
 saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
 
 
@@ -204,7 +222,7 @@ X_slut$yWGS84<-coordinates(dat2.sp)[,2]
 
 saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
 write.csv(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".csv",sep=""))
-
+View(X_slut)
 }
 
 
