@@ -150,7 +150,7 @@ set.seed(12341386)
 
 #X1.save<-X1
 X1.save->X1
-X1<-subset(X1,m_ej>3)
+X1<-subset(X1,m_ej>2)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
@@ -224,6 +224,30 @@ saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameb
 write.csv(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".csv",sep=""))
 View(X_slut)
 }
+
+
+
+
+
+
+xy<-data.frame(x=X_slut$x_WGS84,y=X_slut$yWGS84,a=X_slut$id)
+latslongs <- SpatialPointsDataFrame(coords=xy[,c(1,2)],data=xy,proj4string =CRS("+proj=longlat + ellps=WGS84")) 
+writeOGR(latslongs, dsn=paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_gpxTEST.gpx",sep=""),
+         dataset_options="GPX_USE_EXTENSIONS=yes",layer="waypoints",driver="GPX", overwrite_layer = T)
+
+
+
+
+
+X_slut<-readRDS("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/Tassasen.rds")
+xy<-data.frame(x=X_slut$x_WGS84,y=X_slut$yWGS84,extention=X_slut$id)
+latslongs <- SpatialPointsDataFrame(coords=xy[,c(1,2)],data=xy,proj4string =CRS("+proj=longlat + ellps=WGS84")) 
+writeOGR(latslongs, dsn=paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/","Tassasen","_gpxTEST.gpx",sep=""),
+         dataset_options="GPX_USE_EXTENSIONS=yes",layer="waypoints",driver="GPX", overwrite_layer = T)
+
+
+
+
 
 
 
