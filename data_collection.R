@@ -56,17 +56,47 @@ head(sameby@data)
 sameby@data$NAMN
 
 sameby.deltagare<-c("MittÃ¥dalen","HandÃ¶lsdalen","TÃ¥ssÃ¥sen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina norra","Ruvhten sijte")
-sameby.name<-c("Mittadalen","Handalsdalen","Tassasen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina_norra","Ruvhten_sijte")
+
+
+
+
+
+sameby.name<-c("Mittadalen","Mittadalen","Tassasen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina_norra","Ruvhten_sijte")
+
+# #Jockmock
+# Sörkaitum 
+# Ängeså
+# Pirttijärvi
+# Jåhkågasska
+# Korju
+# Maskaure
+# Vittangi 
+# Kalix
+# Girjas
+# Gällivare 
+# Tärendö
+# Saarivuoma
+# Luokta Mavas 
+
+# #Sveg
+# Mittadalen
+# Mittadalen
+# Tassasen
+# Jijnjevaerie
+# Idre
+# Ohredahke
+# Vilhelmina_norra
+# Ruvhten_sijte
 
 
 
 ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Ohredahke/Ohredahke.20190516.091129","Ohredahke bete")
 ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
+mittadalen.area.for.lav<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","mittadalen_lavinventering_anja")
 
 
 
-
-e_mitt<-extent(c(401362.1,459576.7,6859037,6925422))
+e_mitt<-extent(c(385984.9 ,448488.6,6870295,6925445))
 e_hand<-extent(c(399843.6,485588.8,6856712,6978140))
 e_toss<-extent(c(405201.9,500236.7,6875682,6975056))
 e_jijin<-extent(c(445821.7,653488,6889579,7149937))
@@ -82,7 +112,7 @@ e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
 
 
 
-n.sb<-6
+n.sb<-1
 
 for (n.sb in c(1:6))
 {
@@ -96,7 +126,15 @@ plot(sb_vinterbete,add=T,col=2)
 if (n.sb==6)
 {  
   sb_vinterbete<-gIntersection(sb,ohre_bete)}
-  
+ 
+if (n.sb==1)
+{  
+  sb_vinterbete<-gIntersection(sb,mittadalen.area.for.lav)
+  #writeOGR(sb_vinterbete,"D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar",layer="Mittadalen_urval", driver="ESRI Shapefile")
+  }
+
+
+ 
 plot(e1[[n.sb]],add=T)
 
 
@@ -147,10 +185,10 @@ saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.na
 library(BalancedSampling)
 
 set.seed(12341386)
-
-#X1.save<-X1
-X1.save->X1
-X1<-subset(X1,m_ej>2)
+hist(X1$m_ej)
+X1.save<-X1
+#X1.save->X1
+X1<-subset(X1,m_ej>6)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
