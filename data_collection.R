@@ -55,13 +55,60 @@ sameby<-readOGR("C:/Users/Public/Documents/RenGIS/iRenMark/LstGIS.2018-02-19/Sam
 head(sameby@data)
 sameby@data$NAMN
 
-sameby.deltagare<-c("MittÃ¥dalen","HandÃ¶lsdalen","TÃ¥ssÃ¥sen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina norra","Ruvhten sijte")
+sameby.deltagare<-c("MittÃ¥dalen",
+                    "HandÃ¶lsdalen",
+                    "TÃ¥ssÃ¥sen",
+                    "Jijnjevaerie",
+                    "Idre",
+                    "Ohredahke",
+                    "Vilhelmina norra",
+                    "Ruvhten sijte",
+                    "Maskaure",               #Jokkmokk
+                    "MalÃ¥",
+                    "Semisjaur-Njarg",
+                    "Ã„ngesÃ¥",
+                    "TÃ¤rendÃ¶",
+                    "SattajÃ¤rvi",
+                    "GÃ¤llivare",
+                    "JÃ¥hkÃ¥gaska tjiellde",
+                    "Korju",
+                    "Tuorpon",
+                    "KÃ¶nkÃ¤mÃ¤",
+                    "Luokta-MÃ¡vas",
+                    "Sirges",
+                    "Muonio",
+                    "Baste cearru",
+                    "Saarivuoma",
+                    "Gran")
 
 
 
 
-
-sameby.name<-c("Mittadalen","Mittadalen","Tassasen","Jijnjevaerie","Idre","Ohredahke","Vilhelmina_norra","Ruvhten_sijte")
+sameby.name<-c("Mittadalen",
+               "Mittadalen",
+               "Tassasen",
+               "Jijnjevaerie",
+               "Idre",
+               "Ohredahke",
+               "Vilhelmina_norra",
+               "Ruvhten_sijte",
+               "Maskaure",                       #Jokkmokk
+               "Mala",
+               "Semisjaur_Njarg",
+               "Angesa",
+               "Tarendo",
+               "Sattajarvi",
+               "Gallivare",
+               "Jahkagaska_tjiellde",
+               "Korju",
+               "Tuorpon",
+               "Konkama",
+               "Luokta-Mavas",
+               "Sirges",
+               "Muonio",
+               "Baste cearru",
+               "Saarivuoma",
+               "Gran")
 
 # #Jockmock
 # Sörkaitum 
@@ -112,9 +159,9 @@ e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
 
 
 
-n.sb<-1
+n.sb<-25
 
-for (n.sb in c(1:6))
+#for (n.sb in c(1:6))
 {
 sb<-subset(sameby,NAMN==sameby.deltagare[n.sb])
 sb_vinterbete<-gIntersection(sb,t1)
@@ -132,6 +179,12 @@ if (n.sb==1)
   sb_vinterbete<-gIntersection(sb,mittadalen.area.for.lav)
   #writeOGR(sb_vinterbete,"D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar",layer="Mittadalen_urval", driver="ESRI Shapefile")
   }
+
+writeOGR(sb, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border"), driver="ESRI Shapefile")
+p.df <- data.frame( ID=1:length(sb_vinterbete)) 
+rownames(p.df)
+p <- SpatialPolygonsDataFrame(sb_vinterbete, p.df)
+writeOGR(p, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border_vinter"), driver="ESRI Shapefile")
 
 
  
