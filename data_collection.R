@@ -55,14 +55,14 @@ sameby<-readOGR("C:/Users/Public/Documents/RenGIS/iRenMark/LstGIS.2018-02-19/Sam
 head(sameby@data)
 sameby@data$NAMN
 
-sameby.deltagare<-c("MittÃ¥dalen",
-                    "HandÃ¶lsdalen",
-                    "TÃ¥ssÃ¥sen",
-                    "Jijnjevaerie",
-                    "Idre",
-                    "Ohredahke",
-                    "Vilhelmina norra",
-                    "Ruvhten sijte",
+sameby.deltagare<-c("MittÃ¥dalen", #ok
+                    "HandÃ¶lsdalen", #ok
+                    "TÃ¥ssÃ¥sen", #ok
+                    "Jijnjevaerie", 
+                    "Idre", #ok
+                    "Ohredahke", #ok
+                    "Vilhelmina norra", #ok
+                    "Ruvhten sijte", #de var inte med i Sveg
                     "Maskaure",               #Jokkmokk
                     "MalÃ¥",
                     "Semisjaur-Njarg",
@@ -137,48 +137,113 @@ sameby.name<-c("Mittadalen",
 
 
 
-ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Ohredahke/Ohredahke.20190516.091129","Ohredahke bete")
-ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
+#ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Ohredahke/Ohredahke.20190516.091129","Ohredahke bete")
+#ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
+ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Ohredake_Vinterbete")
 mittadalen.area.for.lav<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","mittadalen_lavinventering_anja")
-
-
+handalsdalen<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Handalsdalen_Vinterbete")
+sirges<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","sirges_Vinterbete_corrected")
+sirges<-spTransform(sirges,CRS=projSWEREF)
 
 e_mitt<-extent(c(385984.9 ,448488.6,6870295,6925445))
-e_hand<-extent(c(399843.6,485588.8,6856712,6978140))
+e_hand<-extent(c(389990.9 ,483724.7, 6857244,6967488))
 e_toss<-extent(c(405201.9,500236.7,6875682,6975056))
 e_jijin<-extent(c(445821.7,653488,6889579,7149937))
 e_idre<-extent(c(346611.8,437680.8,6814134 ,6890618))
-e_ohre<-extent(c(486617.3,656234.9, 6929175,7076852))
+e_ohre<-extent(c(487039.2 ,628809.1, 6932550,7111450))
 e_vil.norr<-extent(c(605985.4,730699.8,7002191,7127639))
 e_ruv<-NA
+e_mask<-extent(c(714013.7,825326.4,7138222,7225436))
+e_mala<-NA
+e_semi<-extent(c(730468.8,806924.6,7203201,7316929))
+e_anges<-extent(c( 807654.4,849444.4,7365560,7429720))
+e_taren<-NA
+e_sattaj<-extent(c(813374,888677.8 ,7442014,7500965))
+e_galliv<-NA
+e_johka<-NA
+e_korju<-NA
+e_tuorpon<-NA
+e_kanka<-NA
+e_luokta<-NA
+e_sirges<-extent(c(655442.7,852279.8,7250623,7457384))
+e_muoni<-NA
+e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
+e_saar<-NA
+e_gran<-NA
+
+
+
+
+
+
+
+
+
   
-e1<-list(e_mitt,e_hand,e_toss,e_jijin,e_idre,e_ohre,e_vil.norr,e_ruv)
+e1<-list(e_mitt,
+         e_hand,
+         e_toss,
+         e_jijin,
+         e_idre,
+         e_ohre,
+         e_vil.norr,
+         e_ruv,
+         e_mask,
+         e_mala,
+         e_semi,
+         e_anges,
+         e_taren,
+         e_sattaj,
+         e_galliv,
+         e_johka,
+         e_korju,
+         e_tuorpon,
+         e_kanka,
+         e_luokta,
+         e_sirges,
+         e_muoni,
+         e_baste,
+         e_saar,
+         e_gran
+)
 
 
 
 
 
 
-n.sb<-25
+n.sb<-21
 
 #for (n.sb in c(1:6))
 {
 sb<-subset(sameby,NAMN==sameby.deltagare[n.sb])
 sb_vinterbete<-gIntersection(sb,t1)
-#mapview(sb)+mapview(varvinter,col.regions ="red")
 
 plot(sb)
-#plot(lav.model,add=T)
 plot(sb_vinterbete,add=T,col=2)
-if (n.sb==6)
-{  
-  sb_vinterbete<-gIntersection(sb,ohre_bete)}
+
+
+if (n.sb==6)  #ohredake
+         {sb_vinterbete<-gIntersection(sb,ohre_bete)}
  
-if (n.sb==1)
-{  
-  sb_vinterbete<-gIntersection(sb,mittadalen.area.for.lav)
-  #writeOGR(sb_vinterbete,"D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar",layer="Mittadalen_urval", driver="ESRI Shapefile")
-  }
+if (n.sb==1)  #MittÃ¥dalen
+         {sb_vinterbete<-gIntersection(sb,mittadalen.area.for.lav)}
+
+if (n.sb==2)  #Handalsdalen
+         {sb_vinterbete<-gIntersection(sb,handalsdalen)}
+
+if (n.sb==4)  #Jijnjevaerie
+         {sb_vinterbete<-gDifference(sb_vinterbete,ohre_bete)}
+
+if (n.sb==14)
+{sb_vinterbete<-sb}
+
+if (n.sb==21)
+{sb_vinterbete<-(gDifference(subset(sirges,id==1),subset(sirges,id==2)))}
+
+ 
+plot(sb)
+plot(sb_vinterbete,add=T,col=3)
 
 writeOGR(sb, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border"), driver="ESRI Shapefile")
 p.df <- data.frame( ID=1:length(sb_vinterbete)) 
@@ -203,10 +268,11 @@ xy<-xyFromCell(lav.vinter,1:ncell(lav.vinter))
 
 X<-data.frame(xy,pred)
 X<-X%>%filter(!is.na(pred))
+dim(X)
 k<-sample(c(1:length(X[,1])),10000) #set to 10000!!
 X1<-X[k,]
 sd_ej<-m_ej<-max_ej<-NA
-j=1
+
 
 #fist sample av sample squares
 for (j in c(1:dim(X1)[1]))
@@ -241,7 +307,7 @@ set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>6)
+X1<-subset(X1,m_ej>5)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
