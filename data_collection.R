@@ -84,31 +84,31 @@ sameby.deltagare<-c("MittÃ¥dalen", #ok
 
 
 
-sameby.name<-c("Mittadalen",
-               "Mittadalen",
-               "Tassasen",
-               "Jijnjevaerie",
-               "Idre",
-               "Ohredahke",
-               "Vilhelmina_norra",
-               "Ruvhten_sijte",
-               "Maskaure",                       #Jokkmokk
-               "Mala",
-               "Semisjaur_Njarg",
-               "Angesa",
-               "Tarendo",
-               "Sattajarvi",
-               "Gallivare",
-               "Jahkagaska_tjiellde",
-               "Korju",
-               "Tuorpon",
-               "Konkama",
-               "Luokta-Mavas",
-               "Sirges",
-               "Muonio",
-               "Baste cearru",
-               "Saarivuoma",
-               "Gran")
+sameby.name<-c("Mittadalen",          #1
+               "Mittadalen",          #2
+               "Tassasen",            #3
+               "Jijnjevaerie",        #4
+               "Idre",                #5
+               "Ohredahke",           #6
+               "Vilhelmina_norra",    #7
+               "Ruvhten_sijte",       #8
+               "Maskaure",            #9            #Jokkmokk
+               "Mala",                #10
+               "Semisjaur_Njarg",     #11
+               "Angesa",              #12
+               "Tarendo",             #13
+               "Sattajarvi",          #14
+               "Gallivare",           #15
+               "Jahkagaska_tjiellde", #16
+               "Korju",               #17
+               "Tuorpon",             #18
+               "Konkama",             #19
+               "Luokta-Mavas",        #20
+               "Sirges",              #21
+               "Muonio",              #22
+               "Baste cearru",        #23
+               "Saarivuoma",          #24
+               "Gran")                #25
 
 # #Jockmock
 # Sörkaitum 
@@ -136,6 +136,7 @@ sameby.name<-c("Mittadalen",
 # Ruvhten_sijte
 
 
+#extra tillägg till RenGIS innformation
 
 #ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Ohredahke/Ohredahke.20190516.091129","Ohredahke bete")
 #ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
@@ -144,6 +145,20 @@ mittadalen.area.for.lav<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","mittada
 handalsdalen<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Handalsdalen_Vinterbete")
 sirges<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","sirges_Vinterbete_corrected")
 sirges<-spTransform(sirges,CRS=projSWEREF)
+tuorpons<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","tuorpons_vinterbete_update")
+tuorpons<-spTransform(tuorpons,CRS=projSWEREF)
+
+#Jahkagaska Tjiellde merge beteslandindelning!
+
+jahka1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde atgard")
+jahka2<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde bete")
+jahka3<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde karn")
+jahka4<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde lagutn")
+jahka5<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde nyckel")
+
+t1<-bind(jahka1,jahka2,jahka3,jahka4,jahka5)
+
+
 
 e_mitt<-extent(c(385984.9 ,448488.6,6870295,6925445))
 e_hand<-extent(c(389990.9 ,483724.7, 6857244,6967488))
@@ -154,17 +169,17 @@ e_ohre<-extent(c(487039.2 ,628809.1, 6932550,7111450))
 e_vil.norr<-extent(c(605985.4,730699.8,7002191,7127639))
 e_ruv<-NA
 e_mask<-extent(c(714013.7,825326.4,7138222,7225436))
-e_mala<-NA
+e_mala<-extent(c(621034.7,807957.9,7122773,7286090))
 e_semi<-extent(c(730468.8,806924.6,7203201,7316929))
 e_anges<-extent(c( 807654.4,849444.4,7365560,7429720))
 e_taren<-NA
 e_sattaj<-extent(c(813374,888677.8 ,7442014,7500965))
 e_galliv<-NA
-e_johka<-NA
+e_jahka<-extent(c(618910.7,801196.8 ,7306712,7442952))
 e_korju<-NA
-e_tuorpon<-NA
+e_tuorpon<-extent(c(615935.7,849349.8,7257338,7423976 ))
 e_kanka<-NA
-e_luokta<-NA
+e_luokta<-extent(c(626227.7,793875.4,7276367,7379750))
 e_sirges<-extent(c(655442.7,852279.8,7250623,7457384))
 e_muoni<-NA
 e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
@@ -195,7 +210,7 @@ e1<-list(e_mitt,
          e_taren,
          e_sattaj,
          e_galliv,
-         e_johka,
+         e_jahka,
          e_korju,
          e_tuorpon,
          e_kanka,
@@ -212,10 +227,11 @@ e1<-list(e_mitt,
 
 
 
-n.sb<-21
+n.sb<-16
 
 #for (n.sb in c(1:6))
-{
+#{
+sameby.deltagare[n.sb]
 sb<-subset(sameby,NAMN==sameby.deltagare[n.sb])
 sb_vinterbete<-gIntersection(sb,t1)
 
@@ -238,10 +254,15 @@ if (n.sb==4)  #Jijnjevaerie
 if (n.sb==14)
 {sb_vinterbete<-sb}
 
-if (n.sb==21)
+if (n.sb==21)  #Sirges Sameby
 {sb_vinterbete<-(gDifference(subset(sirges,id==1),subset(sirges,id==2)))}
 
  
+if (n.sb==18)  #Tuorpons
+{sb_vinterbete<-gIntersection(sb,tuorpons)}
+
+
+
 plot(sb)
 plot(sb_vinterbete,add=T,col=3)
 
@@ -299,7 +320,7 @@ X1$max_ej<-max_ej
 
 saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_first_selection_data.rds",sep=""))
 
-
+X1<-readRDS(paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_first_selection_data.rds",sep=""))
 
 library(BalancedSampling)
 
@@ -307,7 +328,7 @@ set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>5)
+X1<-subset(X1,m_ej>3.5)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
@@ -380,7 +401,7 @@ X_slut$yWGS84<-coordinates(dat2.sp)[,2]
 saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
 write.csv(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".csv",sep=""))
 View(X_slut)
-}
+#}
 
 
 
