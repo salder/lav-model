@@ -145,9 +145,12 @@ mittadalen.area.for.lav<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","mittada
 handalsdalen<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Handalsdalen_Vinterbete")
 sirges<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","sirges_Vinterbete_corrected")
 sirges<-spTransform(sirges,CRS=projSWEREF)
-tuorpons<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","tuorpons_vinterbete_update")
+tuorpons<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","tuorpons_vinterbete_new")
 tuorpons<-spTransform(tuorpons,CRS=projSWEREF)
 
+
+korju<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Korju_vinter_update")
+korju<-spTransform(korju,CRS=projSWEREF)
 #Jahkagaska Tjiellde merge beteslandindelning!
 
 jahka1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde atgard")
@@ -176,7 +179,7 @@ e_taren<-NA
 e_sattaj<-extent(c(813374,888677.8 ,7442014,7500965))
 e_galliv<-NA
 e_jahka<-extent(c(618910.7,801196.8 ,7306712,7442952))
-e_korju<-NA
+e_korju<-extent(c(841505.9,894003.5,7378307,7463467))
 e_tuorpon<-extent(c(615935.7,849349.8,7257338,7423976 ))
 e_kanka<-NA
 e_luokta<-extent(c(626227.7,793875.4,7276367,7379750))
@@ -227,7 +230,7 @@ e1<-list(e_mitt,
 
 
 
-n.sb<-16
+n.sb<-17
 
 #for (n.sb in c(1:6))
 #{
@@ -260,6 +263,10 @@ if (n.sb==21)  #Sirges Sameby
  
 if (n.sb==18)  #Tuorpons
 {sb_vinterbete<-gIntersection(sb,tuorpons)}
+
+
+if (n.sb==17)  #Tuorpons
+{sb_vinterbete<-gIntersection(sb,korju)}
 
 
 
@@ -328,15 +335,18 @@ set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>3.5)
+X1<-subset(X1,m_ej>3)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
 X1.m<-as.matrix(X1)
 s = lpm1(p,X1.m)
 
-plot(X1[,1],X1[,2]); # plot population
-points(X1[s,1],X1[s,2], pch=19,col=3); # plot sample
+#plot(X1[,1],X1[,2]); # plot population
+
+plot(sb)
+plot(sb_vinterbete,add=T,col=3)
+points(X1[s,1],X1[s,2], pch=19,col=2); # plot sample
 
 
 
