@@ -49,7 +49,9 @@ lav.model<-raster("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav_model_south.tif")
 roads_all<-readRDS("D:/UMEA/Renbruksplan/roads.rds")
 
 t1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1","varvinter")
+t1<-spTransform(t1,CRS=projSWEREF)
 sameby<-readOGR("C:/Users/Public/Documents/RenGIS/iRenMark/LstGIS.2018-02-19/Samebyarnas betesområden","IRENMARK_DBO_sameby")
+sameby<-spTransform(sameby,CRS=projSWEREF)
 #combine the polygones
 
 head(sameby@data)
@@ -151,6 +153,8 @@ tuorpons<-spTransform(tuorpons,CRS=projSWEREF)
 
 korju<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Korju_vinter_update")
 korju<-spTransform(korju,CRS=projSWEREF)
+muonio<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Muonio_vinterbete_update")
+muonio<-spTransform(muonio,CRS=projSWEREF)
 #Jahkagaska Tjiellde merge beteslandindelning!
 
 jahka1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde atgard")
@@ -184,7 +188,7 @@ e_tuorpon<-extent(c(615935.7,849349.8,7257338,7423976 ))
 e_kanka<-NA
 e_luokta<-extent(c(626227.7,793875.4,7276367,7379750))
 e_sirges<-extent(c(655442.7,852279.8,7250623,7457384))
-e_muoni<-NA
+e_muoni<-extent(c(819974.6,859695.1,7517150,7560684 ))
 e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
 e_saar<-NA
 e_gran<-NA
@@ -230,7 +234,7 @@ e1<-list(e_mitt,
 
 
 
-n.sb<-17
+n.sb<-25
 
 #for (n.sb in c(1:6))
 #{
@@ -265,9 +269,12 @@ if (n.sb==18)  #Tuorpons
 {sb_vinterbete<-gIntersection(sb,tuorpons)}
 
 
-if (n.sb==17)  #Tuorpons
+if (n.sb==17)  #Korju
 {sb_vinterbete<-gIntersection(sb,korju)}
 
+
+if (n.sb==22)  #Korju
+{sb_vinterbete<-gIntersection(sb,muonio)}
 
 
 plot(sb)
@@ -301,7 +308,8 @@ k<-sample(c(1:length(X[,1])),10000) #set to 10000!!
 X1<-X[k,]
 sd_ej<-m_ej<-max_ej<-NA
 
-
+if (n.sb==22)
+  X1<-X1[-8873,]
 #fist sample av sample squares
 for (j in c(1:dim(X1)[1]))
 {
@@ -347,7 +355,7 @@ s = lpm1(p,X1.m)
 plot(sb)
 plot(sb_vinterbete,add=T,col=3)
 points(X1[s,1],X1[s,2], pch=19,col=2); # plot sample
-
+#points(X1[,1],X1[,2], pch=19,col=2)
 
 
 
