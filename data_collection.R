@@ -149,7 +149,7 @@ sirges<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","sirges_Vinterbete_correc
 sirges<-spTransform(sirges,CRS=projSWEREF)
 tuorpons<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","tuorpons_vinterbete_new")
 tuorpons<-spTransform(tuorpons,CRS=projSWEREF)
-
+nmd<-raster("D:/UMEA/NMD-nya SMD/NMD/nmd2018bas_ogeneraliserad_v1_0.tif")
 
 korju<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Korju_vinter_update")
 korju<-spTransform(korju,CRS=projSWEREF)
@@ -163,7 +163,7 @@ jahka3<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahk
 jahka4<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde lagutn")
 jahka5<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde nyckel")
 
-t1<-bind(jahka1,jahka2,jahka3,jahka4,jahka5)
+t1_jahka<-bind(jahka1,jahka2,jahka3,jahka4,jahka5)
 
 
 
@@ -179,9 +179,9 @@ e_mask<-extent(c(714013.7,825326.4,7138222,7225436))
 e_mala<-extent(c(621034.7,807957.9,7122773,7286090))
 e_semi<-extent(c(730468.8,806924.6,7203201,7316929))
 e_anges<-extent(c( 807654.4,849444.4,7365560,7429720))
-e_taren<-NA
+e_taren<-extent(c(793474.9,850586.3,7427071,7501031))
 e_sattaj<-extent(c(813374,888677.8 ,7442014,7500965))
-e_galliv<-NA
+e_galliv<-extent(c(721328.8 ,861580.9,7305555,7460853 ))
 e_jahka<-extent(c(618910.7,801196.8 ,7306712,7442952))
 e_korju<-extent(c(841505.9,894003.5,7378307,7463467))
 e_tuorpon<-extent(c(615935.7,849349.8,7257338,7423976 ))
@@ -191,7 +191,7 @@ e_sirges<-extent(c(655442.7,852279.8,7250623,7457384))
 e_muoni<-extent(c(819974.6,859695.1,7517150,7560684 ))
 e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
 e_saar<-NA
-e_gran<-NA
+e_gran<-extent(c(600211,791409.3 ,7103866,7292041))
 
 
 
@@ -234,7 +234,7 @@ e1<-list(e_mitt,
 
 
 
-n.sb<-25
+n.sb<-13
 
 #for (n.sb in c(1:6))
 #{
@@ -296,7 +296,8 @@ lav.sb<-crop(lav.model,extent(sb))
 
 lav.vinter<-mask(lav.sb,sb_vinterbete)
 lav.vinter<-crop(lav.vinter,e1[[n.sb]])
-
+ex.vinter<-extent(lav.vinter)
+nmd.vinter<-crop(nmd,ex.vinter)
 
 pred<-getValues(lav.vinter)
 xy<-xyFromCell(lav.vinter,1:ncell(lav.vinter))
@@ -316,6 +317,12 @@ for (j in c(1:dim(X1)[1]))
   ej<-extent(c(X1$x[j]-500, X1$x[j]+500, X1$y[j]-500, X1$y[j]+500))
   crop_ej<-crop(lav.vinter,ej)
   roads_sel<-crop(roads,ej)
+  nmd_sel<-crop(nmd.vinter,ej)
+  nmd.val<-getValues(nmd_sel)
+  lav.val<-getValues(crop_ej)
+  lav.val<-ifelse(nmd.val==2,NA,lav.val)
+  crop_ej<-setValues(crop_ej,lav.val)
+  
   #jarnvag_sel<-crop(jarnvag,ej)
   if (is.null(roads_sel)==FALSE)
     crop_ej<-mask(crop_ej,buffer(roads_sel,15),inverse=TRUE)
@@ -343,7 +350,7 @@ set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>3)
+X1<-subset(X1,m_ej>3.5)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
@@ -371,6 +378,11 @@ for (j in c(1:n_r))
   ej<-extent(c(X1_selected$x[j]-500, X1_selected$x[j]+500, X1_selected$y[j]-500, X1_selected$y[j]+500))
   crop_sel<-crop(lav.vinter,ej)
   roads_sel<-crop(roads,ej)
+  nmd_sel<-crop(nmd.vinter,ej)
+  nmd.val<-getValues(nmd_sel)
+  lav.val<-getValues(crop_sel)
+  lav.val<-ifelse(nmd.val==2,NA,lav.val)
+  crop_sel<-setValues(crop_sel,lav.val)
   if (is.null(roads_sel)==FALSE)
     crop_sel<-mask(crop_sel,buffer(roads_sel,25),inverse=TRUE)
   val_sel<-round(getValues(crop_sel),4)
@@ -387,7 +399,7 @@ for (j in c(1:n_r))
   
   plot(crop_sel) # plot population
   points(X_sel[s,1],X_sel[s,2], pch=19,col=2); # plot sample
-  mapview(crop_sel)
+  #mapview(crop_sel)
   
   X_sel$ruta<-j
   X_ruta<-X_sel[s,]
@@ -397,6 +409,7 @@ X_slut$py<-c(1:length(X_slut$ruta))
 X_slut$id<-paste(X_slut$ruta,"_",X_slut$py,sep="")
 View(X_slut)
 saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
+
 
 
 
@@ -444,27 +457,76 @@ writeOGR(latslongs, dsn=paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebya
 
 
 
+#############################################################################################################
+#############################################################################################################
+#Feedback från SB 16
 
+X_slut<-readRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
 
+if (n.sb==16)
+{
+  n.sb16<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Njal_och_Sudok")
+  n.sb16<-spTransform(n.sb16,CRS=projSWEREF)
+  nya_rutor<-data.frame(coordinates(n.sb16))
+  names(nya_rutor)<-c("x","y")
+  X_slut.1<-NULL
+  for (j in c(1:2))
+  {
+    ej<-extent(c(nya_rutor$x[j]-500, nya_rutor$x[j]+500, nya_rutor$y[j]-500, nya_rutor$y[j]+500))
+    crop_sel<-crop(lav.vinter,ej)
+    roads_sel<-crop(roads,ej)
+    if (is.null(roads_sel)==FALSE)
+      crop_sel<-mask(crop_sel,buffer(roads_sel,25),inverse=TRUE)
+    val_sel<-round(getValues(crop_sel),4)
+    xy<-xyFromCell(crop_sel,1:ncell(crop_sel))
+    X_sel<-data.frame(xy,val_sel)
+    
+    X_sel<-X_sel%>%filter(val_sel>5)   # kan diskuteras
+    
+    N<-dim(X_sel)[1]
+    n=8
+    p = rep(n/N,N)
+    X_sel.m<-as.matrix(X_sel)
+    s = lpm1(p,X_sel.m)
+    
+    plot(crop_sel) # plot population
+    points(X_sel[s,1],X_sel[s,2], pch=19,col=2); # plot sample
+    mapview(crop_sel)
+    
+    X_sel$ruta<-10+j
+    X_ruta<-X_sel[s,]
+    X_slut.1<-rbind(X_slut.1,X_ruta)
+  }
+  X_slut.1$py<-c(1:length(X_slut.1$ruta))
+  X_slut.1
+  X_slut.1$id<-paste(X_slut.1$ruta,X_slut.1$py,sep="_")
+  X_slut.1.sp<-SpatialPointsDataFrame(coords=X_slut.1[,c("x","y")],data=X_slut.1,proj4string=CRS(projSWEREF))
+  writeOGR(obj=X_slut.1.sp, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],".1",sep=""), driver="ESRI Shapefile")
+  writeOGR(sb, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border"), driver="ESRI Shapefile")
+  
+  
+  X_slut.1.sprt99<-spTransform(X_slut.1.sp,CRS("+init=epsg:3021 +towgs84=414.0978567149,41.3381489658,603.0627177516,-0.8550434314,2.1413465,-7.0227209516,0 +no_defs"))
+  X_slut.1$x_rt90<-coordinates(X_slut.1.sprt99)[,1]
+  X_slut.1$y_rt90<-coordinates(X_slut.1.sprt99)[,2]
+  
+  dat1.sp<-spTransform(X_slut.1.sp,CRS("+init=epsg:2400"))
+  dat2.sp<-spTransform(dat1.sp,CRS("+init=epsg:4326"))
+  
+  
+  X_slut.1$x_WGS84<-coordinates(dat2.sp)[,1]
+  X_slut.1$yWGS84<-coordinates(dat2.sp)[,2]
+  
+  saveRDS(X_slut.1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".rds",sep=""))
+  write.csv(X_slut.1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],".csv",sep=""))
+  View(X_slut.1)
+  X_slut.1$id<-paste(X_slut.1$ruta,X_slut.1$py,sep="_")
+  xy<-data.frame(x=X_slut.1$x_WGS84,y=X_slut.1$yWGS84,a=X_slut.1$id)
+  latslongs <- SpatialPointsDataFrame(coords=xy[,c(1,2)],data=xy,proj4string =CRS("+proj=longlat + ellps=WGS84")) 
+  writeOGR(latslongs, dsn=paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_add_gpxTEST.gpx",sep=""),
+           dataset_options="GPX_USE_EXTENSIONS=yes",layer="waypoints",driver="GPX", overwrite_layer = T)
+  
+}
 
-mapview(sb,color="red",col.regions ="white",lwd=2,alpha.regions = 0.1)+mapview(lav.vinter)
-mapview(lav.vinter)
-
-
-
-
-
-karta<-raster("D:/UMEA/Renbruksplan/sr_1302_generalmap.tif")
-karta.c<-crop(karta,(extent(X_slut.sp)+10000))
-m <- mapview(X_slut.sp)
-mapshot(m, file = "D:/UMEA/Renbruksplan/Lavprojekt_2019/Mittadalen_overview_test.jpg",
-        remove_controls = c("homeButton", "layersControl"))
-m <- mapview(subset(X_slut.sp,ruta==1))+mapview(crop(karta,(extent(subset(X_slut.sp,ruta==1))+1000)))
-mapshot(m, file = "D:/UMEA/Renbruksplan/Lavprojekt_2019/Mittadalen_overview_test_ruta_1.jpg",
-        remove_controls = c("homeButton", "layersControl"))
-
-
-m <- mapview(X_slut.sp)
-m
-
-
+#############################################################################################################
+#############################################################################################################
+#Feedback från SB 16
