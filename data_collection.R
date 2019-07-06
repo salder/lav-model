@@ -234,7 +234,7 @@ e1<-list(e_mitt,
 
 
 
-n.sb<-13
+n.sb<-15
 
 #for (n.sb in c(1:6))
 #{
@@ -333,7 +333,8 @@ for (j in c(1:dim(X1)[1]))
   sd_ej[j]<-sd(val_ej,na.rm=T)
   m_ej[j]<-mean(val_ej,na.rm=T)
   max_ej[j]<-max(val_ej,na.rm=T)
-}
+
+  }
 
 
 X1$m_ej<-m_ej
@@ -344,13 +345,19 @@ saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.na
 
 X1<-readRDS(paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_first_selection_data.rds",sep=""))
 
+#fi n.sb==15
+X1.sp<-SpatialPointsDataFrame(coords=X1[,c("x","y")],data=X1,proj4string=CRS(projSWEREF))
+x2.sp<-intersect(X1.sp,sb_vinterbete)
+X1<-x2.sp@data
+
+
 library(BalancedSampling)
 
 set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>3.5)
+X1<-subset(X1,m_ej>0.5)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
@@ -389,7 +396,7 @@ for (j in c(1:n_r))
   xy<-xyFromCell(crop_sel,1:ncell(crop_sel))
   X_sel<-data.frame(xy,val_sel)
   
-  X_sel<-X_sel%>%filter(val_sel>5)   # kan diskuteras
+  X_sel<-X_sel%>%filter(val_sel>10)   # kan diskuteras
   
   N<-dim(X_sel)[1]
   n=8
