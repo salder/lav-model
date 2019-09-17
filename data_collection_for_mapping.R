@@ -23,3 +23,4 @@ projSWEREF <- "+init=epsg:3006"
 t1<-readOGR("F:/Lavproject2019/RBP-lichen_projct_2019","varvinter")
 
 
+las_rutor<-readOGR("//YKSI/13_Geodata/Laser_fjall/las_rutor","rutor")
