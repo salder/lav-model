@@ -45,7 +45,7 @@ writeOGR(obj=t1.sp,dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1", layer=
 #########################################################################################
 
 
-lav.model<-raster("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav_model_south.tif")
+lav.model<-raster("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav_model_south.tif") #build in the Boliden projekt
 roads_all<-readRDS("D:/UMEA/Renbruksplan/roads.rds")
 
 t1<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/lav model1","varvinter")
@@ -345,10 +345,10 @@ saveRDS(X1,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.na
 
 X1<-readRDS(paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameby.name[n.sb],"_first_selection_data.rds",sep=""))
 
-# #fi n.sb==15
-# X1.sp<-SpatialPointsDataFrame(coords=X1[,c("x","y")],data=X1,proj4string=CRS(projSWEREF))
-# x2.sp<-intersect(X1.sp,sb_vinterbete)
-# X1<-x2.sp@data
+#fi n.sb==15
+X1.sp<-SpatialPointsDataFrame(coords=X1[,c("x","y")],data=X1,proj4string=CRS(projSWEREF))
+x2.sp<-intersect(X1.sp,sb_vinterbete)
+X1<-x2.sp@data
 
 
 library(BalancedSampling)

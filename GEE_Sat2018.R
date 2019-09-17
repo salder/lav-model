@@ -1,4 +1,9 @@
 
+
+
+#using 2019 Date will be no improvment as the year was not so good according to cloud cover, tested 9/2019
+
+
 //var geometry=table
 var geometry=geometry
 
