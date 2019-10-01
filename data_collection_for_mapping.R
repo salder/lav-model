@@ -22,78 +22,89 @@ projRT90 <- "+init=epsg:3021 +towgs84=414.0978567149,41.3381489658,603.062717751
 projSWEREF <- "+init=epsg:3006"
 
 
-
-#layer that enfolds the entiere vinter area of the reindeer herding districts (according to the reindeer husbandary plan (see script data collection))
-t1<-readOGR("F:/Lavproject2019/RBP-lichen_projct_2019","varvinter")
-e1<-extent(t1)
-
-las_rutor<-readOGR("//YKSI/13_Geodata/Laser_fjall/las_rutor","rutor")
-#all las files that are in the area of intrest
-las_files<-crop(las_rutor,e1)$Las_Namn
-
-all_laser<-dir("//YKSI/13_Geodata/Laser_fjall",pattern = ".laz")
-ta<-all_laser%in%las_files
-files_las_vinter<-all_laser[ta==TRUE]
+over1_5<-raster("F:/Lavproject2019/laser_old/veg_vinter.tif")
+trad_h<-raster("F:/Lavproject2019/laser_old/p95_vinter.tif")
 
 
-
-#Copy the relevante laser files to a local stoage for speed up
-for (i in 1:length(files_las_vinter))
-     {
-       f1<-paste("//YKSI/13_Geodata/Laser_fjall/",files_las_vinter[i],sep="")
-       file.copy(from=f1,to="//YKSI/13_Geodata/Laser_vinterbete/")
-     }
-
-
-
-
-# laser files 
-veg_cover<-function(Z,min=0.05)
-{
-  l<-length(Z)
-  l_over<-sum(ifelse(Z>=min,1,0))
-  cover<-l_over/l
-  return(cover)
-}
+b10<-raster("M:/reindder_lichen_map/raster_files_combined/b10_lav_vinterbete.tif") 
+b11<-raster("M:/reindder_lichen_map/raster_files_combined/b11_lav_vinterbete.tif")  
+b12<-raster("M:/reindder_lichen_map/raster_files_combined/b12_lav_vinterbete.tif")  
+b2<-raster("M:/reindder_lichen_map/raster_files_combined/b2_lav_vinterbete.tif")   
+b3<-raster("M:/reindder_lichen_map/raster_files_combined/b3_lav_vinterbete.tif")   
+b4<-raster("M:/reindder_lichen_map/raster_files_combined/b4_lav_vinterbete.tif")   
+b5<-raster("M:/reindder_lichen_map/raster_files_combined/b5_lav_vinterbete.tif")   
+b6<-raster("M:/reindder_lichen_map/raster_files_combined/b6_lav_vinterbete.tif")   
+b7<-raster("M:/reindder_lichen_map/raster_files_combined/b7_lav_vinterbete.tif")   
+b8<-raster("M:/reindder_lichen_map/raster_files_combined/b8_lav_vinterbete.tif")   
+b9<-raster("M:/reindder_lichen_map/raster_files_combined/b9_lav_vinterbete.tif")   
+gndvi<-raster("M:/reindder_lichen_map/raster_files_combined/gndvi_lav_vinterbete.tif")
+ndci<-raster("M:/reindder_lichen_map/raster_files_combined/ndci_lav_vinterbete.tif") 
+ndvi<-raster("M:/reindder_lichen_map/raster_files_combined/ndvi_lav_vinterbete.tif") 
+ndwi<-raster("M:/reindder_lichen_map/raster_files_combined/ndwi_lav_vinterbete.tif") 
+savi<-raster("M:/reindder_lichen_map/raster_files_combined/savi_lav_vinterbete.tif") 
+sipi<-raster("M:/reindder_lichen_map/raster_files_combined/sipi_lav_vinterbete.tif") 
+soil<-raster("M:/reindder_lichen_map/raster_files_combined/soil_lav_vinterbete.tif") 
 
 
 
-b1<-raster("M:/reindder_lichen_map/raster_files_combined/b2_lav_vinterbete.tif")
-altitude<-raster("M:/THUF-Fjall/hojddata2.tif")
-length(files_las_vinter)
-#41751
 
-#for (i in 1:length(files_las_vinter))     #i=9892
-for (i in 1:13917)  
-{
-  f1<-paste("//YKSI/13_Geodata/Laser_fjall/",files_las_vinter[i],sep="")
-  file.copy(from=f1,to="F:/temp_raster/")
-  
-  las_file<-paste("F:/temp_raster/",files_las_vinter[i],sep="")
-  las_square<-readLAS(las_file) 
-  las_mean<-(grid_metrics(las_square, mean(Z), 10))
-  las_sd<-(grid_metrics(las_square, sd(Z), 10))
-  las_cover_over_1_5<-(grid_metrics(las_square, fun=veg_cover(Z,min=1.5), 10))
-  las_tree<-(grid_metrics(las_square,.stdmetrics,10))
-  proj4string(las_sd)<-projSWEREF
-  las_tree95<-las_tree[[27]]
-  e_l<-extent(las_sd)
-  t1<-crop(b1,e_l)
-  alt_1<-crop(altitude,extent(t1))  
-  alti<-resample(alt_1,t1,method="bilinear")  
-  e_sat<-extent(b1)
-  las_mean<-crop(las_mean,e_sat)
-  las_sd<-crop(las_sd,e_sat)
-  las_cover_over_1_5<-crop(las_cover_over_1_5,e_sat)
-  las_tree95<-crop(las_tree95,e_sat)
-  alti<-crop(alti,e_sat)
-  
-  
-  res<-addLayer(las_mean,las_sd,las_cover_over_1_5,las_tree95,alti)#,alt_TWI,alt_upslope)
-  names(res)<-c("las_mean","las_sd","las_cover_1_5","las95","altitude")
-  saveRDS(res,file=paste("//YKSI/13_Geodata/lid_temp/",i,".rds",sep=""))
-  file.remove(las_file)
-}
+#2. Tax data 2012-20017
+
+tax.data<-read.csv("F:/Boliden/data analysis/ud1846vegdata.csv",sep=";")
+tax_lav.data<-tax.data%>%filter(Tackningsart_latin=="Cladina spp.")
+
+tax_lav.sp<-SpatialPointsDataFrame(coords=tax_lav.data[,c("Ostkoordinat","Nordkoordinat")],data=tax_lav.data,proj4string=CRS(projSWEREF))
+# #proj4string(hygge_new)<-projSWEREF
+# #tax_lav.data$avDatum<-over(tax_lav.sp,hygge_new)$Avvdatum
+#
+
+b10<-raster("M:/reindder_lichen_map/raster_files_combined/b10_lav_vinterbete.tif") 
+b11<-raster("M:/reindder_lichen_map/raster_files_combined/b11_lav_vinterbete.tif")  
+b12<-raster("M:/reindder_lichen_map/raster_files_combined/b12_lav_vinterbete.tif")  
+b2<-raster("M:/reindder_lichen_map/raster_files_combined/b2_lav_vinterbete.tif")   
+b3<-raster("M:/reindder_lichen_map/raster_files_combined/b3_lav_vinterbete.tif")   
+b4<-raster("M:/reindder_lichen_map/raster_files_combined/b4_lav_vinterbete.tif")   
+b5<-raster("M:/reindder_lichen_map/raster_files_combined/b5_lav_vinterbete.tif")   
+b6<-raster("M:/reindder_lichen_map/raster_files_combined/b6_lav_vinterbete.tif")   
+b7<-raster("M:/reindder_lichen_map/raster_files_combined/b7_lav_vinterbete.tif")   
+b8<-raster("M:/reindder_lichen_map/raster_files_combined/b8_lav_vinterbete.tif")   
+b9<-raster("M:/reindder_lichen_map/raster_files_combined/b9_lav_vinterbete.tif")   
+gndvi<-raster("M:/reindder_lichen_map/raster_files_combined/gndvi_lav_vinterbete.tif")
+ndci<-raster("M:/reindder_lichen_map/raster_files_combined/ndci_lav_vinterbete.tif") 
+ndvi<-raster("M:/reindder_lichen_map/raster_files_combined/ndvi_lav_vinterbete.tif") 
+ndwi<-raster("M:/reindder_lichen_map/raster_files_combined/ndwi_lav_vinterbete.tif") 
+savi<-raster("M:/reindder_lichen_map/raster_files_combined/savi_lav_vinterbete.tif") 
+sipi<-raster("M:/reindder_lichen_map/raster_files_combined/sipi_lav_vinterbete.tif") 
+soil<-raster("M:/reindder_lichen_map/raster_files_combined/soil_lav_vinterbete.tif") 
+
+
+
+
+tax_lav.data$b2<-extract(b2,tax_lav.sp)
+tax_lav.data$b3<-extract(b3,tax_lav.sp)
+tax_lav.data$b4<-extract(b4,tax_lav.sp)
+tax_lav.data$b5<-extract(b5,tax_lav.sp)
+tax_lav.data$b6<-extract(b6,tax_lav.sp)
+tax_lav.data$b7<-extract(b7,tax_lav.sp)
+tax_lav.data$b8<-extract(b8,tax_lav.sp)
+tax_lav.data$b9<-extract(b9,tax_lav.sp)
+tax_lav.data$b10<-extract(b10,tax_lav.sp)
+tax_lav.data$b11<-extract(b11,tax_lav.sp)
+tax_lav.data$b12<-extract(b12,tax_lav.sp)
+tax_lav.data$ndvi<-extract(ndvi,tax_lav.sp)
+tax_lav.data$ndci<-extract(ndci,tax_lav.sp)
+tax_lav.data$savi<-extract(savi,tax_lav.sp)
+tax_lav.data$soil<-extract(soil,tax_lav.sp)
+tax_lav.data$over1_5<-extract(over1_5,tax_lav.sp)
+tax_lav.data$trad_h<-extract(trad_h,tax_lav.sp)
+
+
+
+jordart<-raster("//YKSI/13_Geodata/Jordart/JordartSWEREF99/jordart.tif")
+#
+tax_lav.data$jordart<-extract(jordart,tax_lav.sp)
+tax_lav.data<-subset(tax_lav.data,!is.na(b2))
+saveRDS(tax_lav.data,file="tax_lav_map_vintergrasing.rds")
 
 
 
