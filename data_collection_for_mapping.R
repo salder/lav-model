@@ -104,7 +104,14 @@ jordart<-raster("//YKSI/13_Geodata/Jordart/JordartSWEREF99/jordart.tif")
 #
 tax_lav.data$jordart<-extract(jordart,tax_lav.sp)
 tax_lav.data<-subset(tax_lav.data,!is.na(b2))
-saveRDS(tax_lav.data,file="tax_lav_map_vintergrasing.rds")
+
+
+hygge<-readOGR("//YKSI/13_Geodata/Samebyar_Ren","sksUtfordAvverk")
+
+
+
+tax_lav.sp<-SpatialPointsDataFrame(coords=tax_lav.data[,c("Ostkoordinat","Nordkoordinat")],data=tax_lav.data,proj4string=CRS(projSWEREF))
+saveRDS(tax_lav.sp,file="tax_lav_map_vintergrasing.rds")
 
 
 
