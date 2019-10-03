@@ -106,8 +106,8 @@ tax_lav.data$jordart<-extract(jordart,tax_lav.sp)
 tax_lav.data<-subset(tax_lav.data,!is.na(b2))
 
 
-hygge<-readOGR("//YKSI/13_Geodata/Samebyar_Ren","sksUtfordAvverk")
-
+#hygge<-readOGR("//YKSI/13_Geodata/Samebyar_Ren","sksUtfordAvverk")
+hygge<-readOGR("M:/reindder_lichen_map","sksUtfordAvverk")
 
 
 tax_lav.sp<-SpatialPointsDataFrame(coords=tax_lav.data[,c("Ostkoordinat","Nordkoordinat")],data=tax_lav.data,proj4string=CRS(projSWEREF))
