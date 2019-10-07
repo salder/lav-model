@@ -148,7 +148,8 @@ tuorpons<-readOGR("M:/reindder_lichen_map","tuorpons_vinterbete_new")
 tuorpons<-spTransform(tuorpons,CRS=projSWEREF)
 nmd<-raster("D:/UMEA/NMD-nya SMD/NMD/nmd2018bas_ogeneraliserad_v1_0.tif")
 
-korju<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Korju_vinter_update")
+#korju<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Korju_vinter_update")
+korju<-readOGR("M:/reindder_lichen_map","Korju_vinter_update")
 korju<-spTransform(korju,CRS=projSWEREF)
 muonio<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Muonio_vinterbete_update")
 muonio<-spTransform(muonio,CRS=projSWEREF)
@@ -172,6 +173,10 @@ sb<-subset(sameby,NAMN==sameby.deltagare[23])
 baste<-rgeos::gIntersection(sb,t1)
 plot(baste)
 
+
+sb<-subset(sameby,NAMN==sameby.deltagare[11])
+Semisjaure<-rgeos::gIntersection(sb,t1)
+plot(Semisjaure)
 
 
 e_mitt<-extent(c(385984.9 ,448488.6,6870295,6925445))
@@ -295,7 +300,18 @@ dropvar_all
 # mapview(sb_data)
 
 #Handolsdalen
-sb_data<-readOGR("F:/Lavproject2019/incommande data/Handolsdalen","LavInv157 Handolsdalens sameby.20190821.213948")
+# sb_data<-readOGR("F:/Lavproject2019/incommande data/Handolsdalen","LavInv157 Handolsdalens sameby.20190821.213948")
+# sb_data<-spTransform(sb_data,CRS=projSWEREF)
+# plot(sb_data)
+# mapview(sb_data)
+
+
+sb_data<-readOGR("F:/Lavproject2019/incommande data/Korju","LavInv133 Korju sameby.20191001.073516")
+sb_data<-spTransform(sb_data,CRS=projSWEREF)
+plot(sb_data)
+mapview(sb_data)
+
+sb_data<-readOGR("F:/Lavproject2019/incommande data/Semisjaure","LavInv114 Semisjaure-Njargs sameby.20191002.143334")
 sb_data<-spTransform(sb_data,CRS=projSWEREF)
 plot(sb_data)
 mapview(sb_data)
@@ -460,6 +476,19 @@ pol_sb<-tassosen
 sb_name<-"handolsdalen"
 e_sb<-e_hand
 pol_sb<-handalsdalen
+
+sb_name<-"korju"
+e_sb<-e_korju
+pol_sb<-korju
+
+sb_name<-"Semisjaure"
+e_sb<-e_semi
+pol_sb<-Semisjaure
+
+
+
+
+
 
 b2.e<-crop(b2.r,e_sb)
 b3.e<-crop(b3.r,e_sb)
