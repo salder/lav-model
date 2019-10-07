@@ -22,6 +22,7 @@ library(dplyr)
 library(rgdal)
 library(mapview)
 library(maptools)
+library(spatial)
 
 #projection and raster options
 rasterOptions(tmpdir="F:/temp_raster")
@@ -65,7 +66,9 @@ drop_cont<-function(form=form,data_use=dat_mod,fam="quasibinomial",method="REML"
 
 #reading in the different winter grasing lands from different reindeer herding district
 #updatera länk!
-sameby<-readOGR("C:/Users/Public/Documents/RenGIS/iRenMark/LstGIS.2018-02-19/Samebyarnas betesområden","IRENMARK_DBO_sameby")
+t1<-readOGR("F:/Lavproject2019/RBP-lichen_projct_2019","varvinter")
+t1<-spTransform(t1,CRS=projSWEREF)
+sameby<-readOGR("F:/Lavproject2019","IRENMARK_DBO_sameby")
 sameby<-spTransform(sameby,CRS=projSWEREF)
 #combine the polygones
 
@@ -135,7 +138,9 @@ sameby.name<-c("Mittadalen",          #1
 #ohre_bete <- spTransform(ohre_bete, CRS("+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"))
 ohre_bete<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Ohredake_Vinterbete")
 mittadalen.area.for.lav<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","mittadalen_lavinventering_anja")
-handalsdalen<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Handalsdalen_Vinterbete")
+#handalsdalen<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","Handalsdalen_Vinterbete")
+handalsdalen<-readOGR("M:/reindder_lichen_map","Handalsdalen_Vinterbete")
+
 sirges<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","sirges_Vinterbete_corrected")
 sirges<-spTransform(sirges,CRS=projSWEREF)
 #tuorpons<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019","tuorpons_vinterbete_new")
@@ -155,6 +160,17 @@ muonio<-spTransform(muonio,CRS=projSWEREF)
       jahka4<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde lagutn")
       jahka5<-readOGR("D:/UMEA/Renbruksplan/Lavprojekt_2019/Jahkagaska Tjiellde","Jahkagaska Tjiellde nyckel")
       t1_jahka<-bind(jahka1,jahka2,jahka3,jahka4,jahka5)
+
+
+      
+sb<-subset(sameby,NAMN==sameby.deltagare[3])
+tassosen<-rgeos::gIntersection(sb,t1)
+plot(tassosen)
+
+
+sb<-subset(sameby,NAMN==sameby.deltagare[23])
+baste<-rgeos::gIntersection(sb,t1)
+plot(baste)
 
 
 
@@ -256,7 +272,30 @@ dropvar_all
 #combining with data collected by the reindeer herding districts
 
 #read data from the reindeer herding district
-sb_data<-readOGR("F:/Lavproject2019/incommande data/Tuorpons","LavInv112 Tuorpons sameby.20190919.225341")
+
+
+
+#Tuorpons
+# sb_data<-readOGR("F:/Lavproject2019/incommande data/Tuorpons","LavInv112 Tuorpons sameby.20190919.225341")
+# sb_data<-spTransform(sb_data,CRS=projSWEREF)
+# plot(sb_data)
+# mapview(sb_data)
+
+#Baste
+# sb_data<-readOGR("F:/Lavproject2019/incommande data/Baste","LavInv108 Baste Cearru.20191002.200157")
+# sb_data<-spTransform(sb_data,CRS=projSWEREF)
+# plot(sb_data)
+# mapview(sb_data)
+
+
+#Tassosen
+# sb_data<-readOGR("F:/Lavproject2019/incommande data/Tassasen","LavInv158 Tassasens sameby.20190906.104044")
+# sb_data<-spTransform(sb_data,CRS=projSWEREF)
+# plot(sb_data)
+# mapview(sb_data)
+
+#Handolsdalen
+sb_data<-readOGR("F:/Lavproject2019/incommande data/Handolsdalen","LavInv157 Handolsdalens sameby.20190821.213948")
 sb_data<-spTransform(sb_data,CRS=projSWEREF)
 plot(sb_data)
 mapview(sb_data)
@@ -308,8 +347,8 @@ sb_data$over1_5<-extract(over1_5.r,sb_data)
 sb_data$trad_h<-extract(trad_h.r,sb_data)
 sb_data$jordart<-extract(jordart.r,sb_data)
 
-ymin<-extent(sb_data)[3]-90000
-ymax<-extent(sb_data)[4]+90000
+ymin<-extent(sb_data)[3]-110000
+ymax<-extent(sb_data)[4]+110000
 e_tax<-extent(tax_model_data)
 xmin<-e_tax[1]
 xmax<-e_tax[2]
@@ -376,7 +415,8 @@ form.vif<-as.formula(lav_tackning ~
                      +s(ndci)
                      +s(over1_5)
                      +s(trad_h)
-                     +as.factor(jordart)
+                    # +jordart
+                    # +as.factor(jordart)
 )
 
 
@@ -386,9 +426,9 @@ form.vif<-as.formula(lav_tackning ~
 fit.gam<-gam(form.vif,data=model_data,"quasibinomial")
 summary(fit.gam)
 plot(fit.gam,pages=1,scale=F, shade=T,all.terms=T)
-gam.check(fit.gam)
-
-
+gam.check(fit.gam,col=model_data$inv,pch=19)
+dropvar_all<-drop_cont(form.vif,model_data,method="GCV.Cp",fam="quasibinomial")
+dropvar_all
 
 
 
@@ -404,11 +444,22 @@ gam.check(fit.gam)
 
 #cut the maps
 
-
+sb_name<-"tuorpon"
 e_sb<-e_tuorpon
 pol_sb<-tuorpons
 
+sb_name<-"baste"
+e_sb<-e_baste
+pol_sb<-baste
 
+
+sb_name<-"tassosen"
+e_sb<-e_toss
+pol_sb<-tassosen
+
+sb_name<-"handolsdalen"
+e_sb<-e_hand
+pol_sb<-handalsdalen
 
 b2.e<-crop(b2.r,e_sb)
 b3.e<-crop(b3.r,e_sb)
@@ -421,22 +472,23 @@ b9.e<-crop(b9.r,e_sb)
 b10.e<-crop(b10.r,e_sb)
 b11.e<-crop(b11.r,e_sb)
 b12.e<-crop(b12.r,e_sb)
-ndvi.e<-crop(ndvi.r,e_tuorpon)
-ndci.e<-crop(ndci.r,e_tuorpon)
-savi.e<-crop(savi.r,e_tuorpon)
-soil.e<-crop(soil.r,e_tuorpon)
-over1_5.e<-crop(over1_5.r,e_tuorpon)
-trad_h.e<-crop(trad_h.r,e_tuorpon)
-jordart.e<-crop(jordart.r,e_tuorpon)
-    jordart.e<-resample(jordart.e,trad_h.e)
+ndvi.e<-crop(ndvi.r,e_sb)
+ndci.e<-crop(ndci.r,e_sb)
+savi.e<-crop(savi.r,e_sb)
+soil.e<-crop(soil.r,e_sb)
+over1_5.e<-crop(over1_5.r,e_sb)
+trad_h.e<-crop(trad_h.r,e_sb)
+jordart.e<-crop(jordart.r,e_sb)
+    jordart.e<-resample(jordart.e,trad_h.e,method="ngb")
 
 
 
 
 out <- b2.e
 
-bs <- blockSize(out)
+bs <- blockSize(out,chunksize=100000)
 out <- writeStart(out, filename="lichen_temp", overwrite=TRUE)
+i<-1
 for (i in 1:bs$n) {
  
   
@@ -457,17 +509,62 @@ for (i in 1:bs$n) {
   soil <- getValues(soil.e, row=bs$row[i], nrows=bs$nrows[i] )
   over1_5 <- getValues(over1_5.e, row=bs$row[i], nrows=bs$nrows[i] )
   trad_h <- getValues(trad_h.e, row=bs$row[i], nrows=bs$nrows[i] )
-  jordart <- getValues(jordart.e, row=bs$row[i], nrows=bs$nrows[i] )
+  #jordart <- getValues(jordart.e, row=bs$row[i], nrows=bs$nrows[i] )
   
-  pred.data<-data.frame(b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,ndvi,ndci,savi,soil,over1_5,trad_h,jordart)
+  pred.data<-data.frame(b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,ndvi,ndci,savi,soil,over1_5,trad_h)#,jordart)
   pre.val<-predict(fit.gam,pred.data,type="response")
   out <- writeValues(out, pre.val, bs$row[i])
   
-  
-  b2 <- getValues(b2.e, row=bs$row[i], nrows=bs$nrows[i] )v <- v + a
-  out <- writeValues(out, v, bs$row[i])
+
 }
 out <- writeStop(out)
 
+file_name<-paste("F:/Lavproject2019/RBP-lichen_projct_2019/result/",sb_name,".tif",sep="")
+writeRaster(out, filename=file_name, format="GTiff", overwrite=TRUE)
+
+
+
+out.m<-mask(out,pol_sb)
+plot(out.m)
+plot(pol_sb,add=T)
+file_name<-paste("F:/Lavproject2019/RBP-lichen_projct_2019/result/",sb_name,"_mask.tif",sep="")
+writeRaster(out.m, filename=file_name, format="GTiff", overwrite=TRUE)
+
+
+
+#betestyp
+
+
+
+out.bt <- out.m
+out.perc <- out.m
+bs <- blockSize(out.bt,chunksize=100000)
+out.bt <- writeStart(out.bt, filename="lichen_temp", overwrite=TRUE)
+out.perc <- writeStart(out.perc, filename="lichen_temp1", overwrite=TRUE)
+i<-1
+for (i in 1:bs$n) {
+  
+  
+  lav <- getValues(out.m, row=bs$row[i], nrows=bs$nrows[i] )
+  lav.df<-data.frame(lav)
+  lav.df<-lav.df%>%mutate(lav_class=case_when(
+    lav >=0 & lav<0.1~"1",
+    lav >=0.1 & lav<0.25~"2",
+    lav >=0.25 & lav<0.5~"3",
+    lav >=0.5 & lav<=1~"4"))%>%mutate(lav_class=as.factor(lav_class))
+  lav<-round(lav*100,0)
+  
+  out.bt <- writeValues(out.bt, lav.df$lav_class, bs$row[i])
+  out.perc <- writeValues(out.perc, lav, bs$row[i])
+  
+}
+out.bt <- writeStop(out.bt)
+out.perc <- writeStop(out.perc)
+
+file_name<-paste("F:/Lavproject2019/RBP-lichen_projct_2019/result/",sb_name,"_mask_bt.tif",sep="")
+writeRaster(out.bt, filename=file_name, format="GTiff", overwrite=TRUE,datatype="INT4S")
+
+file_name<-paste("F:/Lavproject2019/RBP-lichen_projct_2019/result/",sb_name,"_mask_perc.tif",sep="")
+writeRaster(out.perc, filename=file_name, format="GTiff", overwrite=TRUE, datatype="INT4S")
 
 
