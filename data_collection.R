@@ -81,7 +81,9 @@ sameby.deltagare<-c("MittÃ¥dalen", #ok
                     "Muonio",
                     "Baste cearru",
                     "Saarivuoma",
-                    "Gran")
+                    "Gran",
+                    "Vittangi",         #new2020
+                    "LiehittÃ¤jÃ¤")    #new2020
 
 
 
@@ -110,7 +112,9 @@ sameby.name<-c("Mittadalen",          #1
                "Muonio",              #22
                "Baste cearru",        #23
                "Saarivuoma",          #24
-               "Gran")                #25
+               "Gran",                #25
+               "Vittangi",            #26, new2020
+               "Liehiittaja")         #27       
 
 # #Jockmock
 # Sörkaitum 
@@ -192,8 +196,8 @@ e_muoni<-extent(c(819974.6,859695.1,7517150,7560684 ))
 e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
 e_saar<-NA
 e_gran<-extent(c(600211,791409.3 ,7103866,7292041))
-
-
+e_vitt<-extent(c(776221,835343.9,7510700,7570906))
+e_liehi<-extent(c(,,,))
 
 
 
@@ -226,15 +230,17 @@ e1<-list(e_mitt,
          e_muoni,
          e_baste,
          e_saar,
-         e_gran
-)
+         e_gran,
+         e_vitt,
+         e_liehi
+         )
 
 
 
 
 
 
-n.sb<-15
+n.sb<-27
 
 #for (n.sb in c(1:6))
 #{
