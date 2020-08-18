@@ -197,7 +197,7 @@ e_baste<-extent(c(709967.2,815457.6,7425960 ,7503951))
 e_saar<-NA
 e_gran<-extent(c(600211,791409.3 ,7103866,7292041))
 e_vitt<-extent(c(776221,835343.9,7510700,7570906))
-e_liehi<-extent(c(,,,))
+e_liehi<-extent(c(863216.5,918566,7329219,7382739))
 
 
 
@@ -282,6 +282,11 @@ if (n.sb==17)  #Korju
 if (n.sb==22)  #Korju
 {sb_vinterbete<-gIntersection(sb,muonio)}
 
+if (n.sb==26)  #Vittangi
+{sb_vinterbete<-(sb)}
+
+if (n.sb==27)  #Liehittäjä
+{sb_vinterbete<-crop(sb,e_liehi)}
 
 plot(sb)
 plot(sb_vinterbete,add=T,col=3)
@@ -299,6 +304,11 @@ plot(e1[[n.sb]],add=T)
 
 roads<-crop(roads_all,e1[[n.sb]])
 lav.sb<-crop(lav.model,extent(sb))
+roads<-crop(roads_all,extent(sb))
+lav.sb<-mask(lav.sb,buffer(roads,25),inverse=TRUE)  
+if (n.sb==26)   #pga det finns so få med vägar!
+      lav.sb<-mask(lav.sb,buffer(roads,2500))  
+
 
 lav.vinter<-mask(lav.sb,sb_vinterbete)
 lav.vinter<-crop(lav.vinter,e1[[n.sb]])
@@ -311,7 +321,7 @@ xy<-xyFromCell(lav.vinter,1:ncell(lav.vinter))
 X<-data.frame(xy,pred)
 X<-X%>%filter(!is.na(pred))
 dim(X)
-k<-sample(c(1:length(X[,1])),10000) #set to 10000!!
+k<-sample(c(1:length(X[,1])),10000) #set to 10000!! små sameby->1000
 X1<-X[k,]
 sd_ej<-m_ej<-max_ej<-NA
 
@@ -322,16 +332,20 @@ for (j in c(1:dim(X1)[1]))
 {
   ej<-extent(c(X1$x[j]-500, X1$x[j]+500, X1$y[j]-500, X1$y[j]+500))
   crop_ej<-crop(lav.vinter,ej)
-  roads_sel<-crop(roads,ej)
+  #roads_sel<-crop(roads,ej)   funka inte 2020
   nmd_sel<-crop(nmd.vinter,ej)
   nmd.val<-getValues(nmd_sel)
   lav.val<-getValues(crop_ej)
-  lav.val<-ifelse(nmd.val==2,NA,lav.val)
+  lav.val<-ifelse(nmd.val==2,NA,lav.val) #Våtmark
+  lav.val<-ifelse(nmd.val==3,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==51,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==52,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==53,NA,lav.val)#Åkermark
   crop_ej<-setValues(crop_ej,lav.val)
   
   #jarnvag_sel<-crop(jarnvag,ej)
-  if (is.null(roads_sel)==FALSE)
-    crop_ej<-mask(crop_ej,buffer(roads_sel,15),inverse=TRUE)
+      #if (is.null(roads_sel)==FALSE)     funka inte 2020
+          #crop_ej<-mask(crop_ej,buffer(roads_sel,15),inverse=TRUE)    funka inte 2020
   #if (is.null(jarnvag_sel)==FALSE)
   #  crop_ej<-mask(crop_ej,buffer(jarnvag_sel,12),inverse=TRUE)
   plot(crop_ej,main=j)
@@ -363,11 +377,12 @@ set.seed(12341386)
 hist(X1$m_ej)
 X1.save<-X1
 #X1.save->X1
-X1<-subset(X1,m_ej>0.5)
+X1<-subset(X1,m_ej>0.8)
 N<-dim(X1)[1]
 n_r=10
 p = rep(n_r/N,N)
-X1.m<-as.matrix(X1)
+X1.s<-X1 %>% dplyr::select(x,y,pred,m_ej,sd_ej,max_ej)
+X1.m<-as.matrix(X1.s)
 s = lpm1(p,X1.m)
 
 #plot(X1[,1],X1[,2]); # plot population
@@ -376,10 +391,11 @@ plot(sb)
 plot(sb_vinterbete,add=T,col=3)
 points(X1[s,1],X1[s,2], pch=19,col=2); # plot sample
 #points(X1[,1],X1[,2], pch=19,col=2)
+library(mapview)
 
 
-
-
+packageurl <- "https://cran.r-project.org/src/contrib/Archive/raster/raster_2.9-5.tar.gz"
+install.packages(packageurl, repos=NULL, type="source")
 #second sample av sample plots
 
 
@@ -390,14 +406,18 @@ for (j in c(1:n_r))
 {
   ej<-extent(c(X1_selected$x[j]-500, X1_selected$x[j]+500, X1_selected$y[j]-500, X1_selected$y[j]+500))
   crop_sel<-crop(lav.vinter,ej)
-  roads_sel<-crop(roads,ej)
+  #roads_sel<-crop(roads,ej)
   nmd_sel<-crop(nmd.vinter,ej)
   nmd.val<-getValues(nmd_sel)
   lav.val<-getValues(crop_sel)
   lav.val<-ifelse(nmd.val==2,NA,lav.val)
+  lav.val<-ifelse(nmd.val==3,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==51,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==52,NA,lav.val)#Åkermark
+  lav.val<-ifelse(nmd.val==53,NA,lav.val)#Åkermark
   crop_sel<-setValues(crop_sel,lav.val)
-  if (is.null(roads_sel)==FALSE)
-    crop_sel<-mask(crop_sel,buffer(roads_sel,25),inverse=TRUE)
+  #if (is.null(roads_sel)==FALSE)
+  #  crop_sel<-mask(crop_sel,buffer(roads_sel,25),inverse=TRUE)
   val_sel<-round(getValues(crop_sel),4)
   xy<-xyFromCell(crop_sel,1:ncell(crop_sel))
   X_sel<-data.frame(xy,val_sel)
@@ -429,7 +449,7 @@ saveRDS(X_slut,paste("D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar/",sameb
 X_slut.sp<-SpatialPointsDataFrame(coords=X_slut[,c("x","y")],data=X_slut,proj4string=CRS(projSWEREF))
 writeOGR(obj=X_slut.sp, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=sameby.name[n.sb], driver="ESRI Shapefile")
 writeOGR(sb, dsn="D:/UMEA/Renbruksplan/Lavprojekt_2019/till_samebyar", layer=paste(sameby.name[n.sb],"_border"), driver="ESRI Shapefile")
-
+mapview(X_slut.sp)
 
 X_slut.sprt99<-spTransform(X_slut.sp,CRS("+init=epsg:3021 +towgs84=414.0978567149,41.3381489658,603.0627177516,-0.8550434314,2.1413465,-7.0227209516,0 +no_defs"))
 X_slut$x_rt90<-coordinates(X_slut.sprt99)[,1]
