@@ -285,7 +285,7 @@ if (n.sb==22)  #Korju
 if (n.sb==26)  #Vittangi
 {sb_vinterbete<-(sb)}
 
-if (n.sb==27)  #Liehittäjä
+if (n.sb==27)  #Liehittaja
 {sb_vinterbete<-crop(sb,e_liehi)}
 
 plot(sb)
@@ -336,7 +336,7 @@ for (j in c(1:dim(X1)[1]))
   nmd_sel<-crop(nmd.vinter,ej)
   nmd.val<-getValues(nmd_sel)
   lav.val<-getValues(crop_ej)
-  lav.val<-ifelse(nmd.val==2,NA,lav.val) #Våtmark
+  lav.val<-ifelse(nmd.val==2,NA,lav.val) #Vatmark
   lav.val<-ifelse(nmd.val==3,NA,lav.val)#Åkermark
   lav.val<-ifelse(nmd.val==51,NA,lav.val)#Åkermark
   lav.val<-ifelse(nmd.val==52,NA,lav.val)#Åkermark

@@ -215,7 +215,7 @@ e_gran<-extent(c(600211,791409.3 ,7103866,7292041))
 #model based only on the NFI data
 tax_model_data<-readRDS("tax_lav_map_vintergrasing.rds")
   tax_model_data$lav_tackning<-tax_model_data$Tackningsarea/tax_model_data$Provyteareal
-
+  hist(tax_model_data$lav_tackning,nclass=50,col="lightblue",xlab="renlav täckningsgrad",main="",las=1)
 predictors<-tax_model_data@data%>%
   select(b2,b3,b4,b5,b6,b7,b8,b9,b11,b12,ndvi,ndci,soil,savi, over1_5,trad_h,jordart)
 vif(predictors)
@@ -269,7 +269,7 @@ plot(fit.gam,pages=1,scale=F, shade=T,all.terms=T)
 gam.check(fit.gam)
 
 
-dropvar_all<-drop_cont(form.vif,tax_model_data.rest,method="GCV.Cp",fam="quasibinomial")
+dropvar_all<-drop_cont(form.vif,tax_model_data,method="GCV.Cp",fam="quasibinomial")
 dropvar_all
 
 
@@ -293,11 +293,11 @@ dropvar_all
 # mapview(sb_data)
 
 
-#Tassosen
-# sb_data<-readOGR("F:/Lavproject2019/incommande data/Tassasen","LavInv158 Tassasens sameby.20190906.104044")
-# sb_data<-spTransform(sb_data,CRS=projSWEREF)
-# plot(sb_data)
-# mapview(sb_data)
+Tassosen
+sb_data<-readOGR("F:/Lavproject2019/incommande data/Tassasen","LavInv158 Tassasens sameby.20190906.104044")
+sb_data<-spTransform(sb_data,CRS=projSWEREF)
+plot(sb_data)
+mapview(sb_data)
 
 #Handolsdalen
 # sb_data<-readOGR("F:/Lavproject2019/incommande data/Handolsdalen","LavInv157 Handolsdalens sameby.20190821.213948")
