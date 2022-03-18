@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="NWStateCountyPolysOGR" id="NWStateCountyPolysOGR">
+	<SimpleField name="x" type="float"></SimpleField>
+	<SimpleField name="y" type="float"></SimpleField>
+	<SimpleField name="val_sel" type="float"></SimpleField>
+	<SimpleField name="ruta" type="float"></SimpleField>
+	<SimpleField name="py" type="int"></SimpleField>
+	<SimpleField name="id" type="string"></SimpleField>
+</Schema>
+<Folder><name>NWStateCountyPolysOGR</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">450065</SimpleData>
+		<SimpleData name="y">6881655</SimpleData>
+		<SimpleData name="val_sel">11</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">1</SimpleData>
+		<SimpleData name="id">2_1</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0446056593769,62.0637964792322</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">450075</SimpleData>
+		<SimpleData name="y">6881345</SimpleData>
+		<SimpleData name="val_sel">22</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">2</SimpleData>
+		<SimpleData name="id">2_2</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0448842982756,62.0610154736204</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449975</SimpleData>
+		<SimpleData name="y">6881145</SimpleData>
+		<SimpleData name="val_sel">23</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">3</SimpleData>
+		<SimpleData name="id">2_3</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.043027966989,62.0592071914808</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449425</SimpleData>
+		<SimpleData name="y">6880975</SimpleData>
+		<SimpleData name="val_sel">15</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">4</SimpleData>
+		<SimpleData name="id">2_4</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.032556812453,62.0576081581302</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449155</SimpleData>
+		<SimpleData name="y">6880895</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">5</SimpleData>
+		<SimpleData name="id">2_5</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0274158416989,62.0568538937375</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449245</SimpleData>
+		<SimpleData name="y">6880775</SimpleData>
+		<SimpleData name="val_sel">15</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">6</SimpleData>
+		<SimpleData name="id">2_6</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0291714618422,62.0557889711772</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449335</SimpleData>
+		<SimpleData name="y">6880705</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">7</SimpleData>
+		<SimpleData name="id">2_7</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0309126706332,62.055172787114</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">449545</SimpleData>
+		<SimpleData name="y">6880705</SimpleData>
+		<SimpleData name="val_sel">16</SimpleData>
+		<SimpleData name="ruta">2</SimpleData>
+		<SimpleData name="py">8</SimpleData>
+		<SimpleData name="id">2_8</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0349287371093,62.0552008933487</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416515</SimpleData>
+		<SimpleData name="y">6910105</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">9</SimpleData>
+		<SimpleData name="id">3_9</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3894096436434,62.3131473077062</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417005</SimpleData>
+		<SimpleData name="y">6909945</SimpleData>
+		<SimpleData name="val_sel">17</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">10</SimpleData>
+		<SimpleData name="id">3_10</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3989346699131,62.3118208265917</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417225</SimpleData>
+		<SimpleData name="y">6909935</SimpleData>
+		<SimpleData name="val_sel">14</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">11</SimpleData>
+		<SimpleData name="id">3_11</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4031815099347,62.3117798920866</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416655</SimpleData>
+		<SimpleData name="y">6909755</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">12</SimpleData>
+		<SimpleData name="id">3_12</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3922769900506,62.3100381342089</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416525</SimpleData>
+		<SimpleData name="y">6909705</SimpleData>
+		<SimpleData name="val_sel">24</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">13</SimpleData>
+		<SimpleData name="id">3_13</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3897944665831,62.3095604904821</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416785</SimpleData>
+		<SimpleData name="y">6909605</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">14</SimpleData>
+		<SimpleData name="id">3_14</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3948552782259,62.3087212033278</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417135</SimpleData>
+		<SimpleData name="y">6909445</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">15</SimpleData>
+		<SimpleData name="id">3_15</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4016795590778,62.3073633330429</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416615</SimpleData>
+		<SimpleData name="y">6909205</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">3</SimpleData>
+		<SimpleData name="py">16</SimpleData>
+		<SimpleData name="id">3_16</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3917693839528,62.3050942595131</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434635</SimpleData>
+		<SimpleData name="y">6877115</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">17</SimpleData>
+		<SimpleData name="id">1_17</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7511328400299,62.0206972939868</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434665</SimpleData>
+		<SimpleData name="y">6876755</SimpleData>
+		<SimpleData name="val_sel">16</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">18</SimpleData>
+		<SimpleData name="id">1_18</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7518381663387,62.0174716832605</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">435205</SimpleData>
+		<SimpleData name="y">6876715</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">19</SimpleData>
+		<SimpleData name="id">1_19</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.762166051545,62.0172055640639</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434885</SimpleData>
+		<SimpleData name="y">6876675</SimpleData>
+		<SimpleData name="val_sel">51</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">20</SimpleData>
+		<SimpleData name="id">1_20</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7560691738304,62.0167916524637</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434915</SimpleData>
+		<SimpleData name="y">6876565</SimpleData>
+		<SimpleData name="val_sel">26</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">21</SimpleData>
+		<SimpleData name="id">1_21</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7566823854476,62.0158096249894</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434565</SimpleData>
+		<SimpleData name="y">6876525</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">22</SimpleData>
+		<SimpleData name="id">1_22</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7500129438154,62.0153902855185</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">435465</SimpleData>
+		<SimpleData name="y">6876305</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">23</SimpleData>
+		<SimpleData name="id">1_23</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7672804815073,62.0135704611678</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434945</SimpleData>
+		<SimpleData name="y">6876285</SimpleData>
+		<SimpleData name="val_sel">15</SimpleData>
+		<SimpleData name="ruta">1</SimpleData>
+		<SimpleData name="py">24</SimpleData>
+		<SimpleData name="id">1_24</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7573577440152,62.013301938033</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">434065</SimpleData>
+		<SimpleData name="y">6915425</SimpleData>
+		<SimpleData name="val_sel">25</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">25</SimpleData>
+		<SimpleData name="id">4_25</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7258498363924,62.3643974448759</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433325</SimpleData>
+		<SimpleData name="y">6915345</SimpleData>
+		<SimpleData name="val_sel">42</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">26</SimpleData>
+		<SimpleData name="id">4_26</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7115848988809,62.3635479540637</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433755</SimpleData>
+		<SimpleData name="y">6915315</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">27</SimpleData>
+		<SimpleData name="id">4_27</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7199031347306,62.3633553753933</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433885</SimpleData>
+		<SimpleData name="y">6915175</SimpleData>
+		<SimpleData name="val_sel">12</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">28</SimpleData>
+		<SimpleData name="id">4_28</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7224679000962,62.3621221044948</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433915</SimpleData>
+		<SimpleData name="y">6914985</SimpleData>
+		<SimpleData name="val_sel">13</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">29</SimpleData>
+		<SimpleData name="id">4_29</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7231198881508,62.3604223849686</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433805</SimpleData>
+		<SimpleData name="y">6914825</SimpleData>
+		<SimpleData name="val_sel">9</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">30</SimpleData>
+		<SimpleData name="id">4_30</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7210562455987,62.3589670572578</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433895</SimpleData>
+		<SimpleData name="y">6914625</SimpleData>
+		<SimpleData name="val_sel">20</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">31</SimpleData>
+		<SimpleData name="id">4_31</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7228708999085,62.3571882432239</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">433135</SimpleData>
+		<SimpleData name="y">6914525</SimpleData>
+		<SimpleData name="val_sel">12</SimpleData>
+		<SimpleData name="ruta">4</SimpleData>
+		<SimpleData name="py">32</SimpleData>
+		<SimpleData name="id">4_32</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7082309194163,62.3561553940796</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451465</SimpleData>
+		<SimpleData name="y">6869305</SimpleData>
+		<SimpleData name="val_sel">68</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">33</SimpleData>
+		<SimpleData name="id">5_33</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.074756433071,61.9531328921339</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451435</SimpleData>
+		<SimpleData name="y">6869205</SimpleData>
+		<SimpleData name="val_sel">15</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">34</SimpleData>
+		<SimpleData name="id">5_34</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0742118021303,61.9522315059994</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451185</SimpleData>
+		<SimpleData name="y">6869115</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">35</SimpleData>
+		<SimpleData name="id">5_35</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0694714178476,61.9513916311035</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451705</SimpleData>
+		<SimpleData name="y">6868915</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">36</SimpleData>
+		<SimpleData name="id">5_36</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0794363702345,61.9496630804034</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451595</SimpleData>
+		<SimpleData name="y">6868775</SimpleData>
+		<SimpleData name="val_sel">11</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">37</SimpleData>
+		<SimpleData name="id">5_37</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0773778745266,61.9483924960828</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451555</SimpleData>
+		<SimpleData name="y">6868655</SimpleData>
+		<SimpleData name="val_sel">9</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">38</SimpleData>
+		<SimpleData name="id">5_38</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0766481008132,61.9473103335334</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451275</SimpleData>
+		<SimpleData name="y">6868565</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">39</SimpleData>
+		<SimpleData name="id">5_39</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0713367213243,61.9464666924796</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">451455</SimpleData>
+		<SimpleData name="y">6868455</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">5</SimpleData>
+		<SimpleData name="py">40</SimpleData>
+		<SimpleData name="id">5_40</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>14.0747967344332,61.9455024581368</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424265</SimpleData>
+		<SimpleData name="y">6906235</SimpleData>
+		<SimpleData name="val_sel">66</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">41</SimpleData>
+		<SimpleData name="id">6_41</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5405452005075,62.2800717926263</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424575</SimpleData>
+		<SimpleData name="y">6906195</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">42</SimpleData>
+		<SimpleData name="id">6_42</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5465340863078,62.2797754696409</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424025</SimpleData>
+		<SimpleData name="y">6906165</SimpleData>
+		<SimpleData name="val_sel">60</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">43</SimpleData>
+		<SimpleData name="id">6_43</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5359525695419,62.2793950142403</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424045</SimpleData>
+		<SimpleData name="y">6905865</SimpleData>
+		<SimpleData name="val_sel">68</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">44</SimpleData>
+		<SimpleData name="id">6_44</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5364685177839,62.2767070877314</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424635</SimpleData>
+		<SimpleData name="y">6905845</SimpleData>
+		<SimpleData name="val_sel">16</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">45</SimpleData>
+		<SimpleData name="id">6_45</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5478411607848,62.276646891402</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424405</SimpleData>
+		<SimpleData name="y">6905765</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">46</SimpleData>
+		<SimpleData name="id">6_46</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5434458238355,62.2758826416058</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424575</SimpleData>
+		<SimpleData name="y">6905485</SimpleData>
+		<SimpleData name="val_sel">33</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">47</SimpleData>
+		<SimpleData name="id">6_47</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5468412066549,62.273404404873</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">424775</SimpleData>
+		<SimpleData name="y">6905455</SimpleData>
+		<SimpleData name="val_sel">25</SimpleData>
+		<SimpleData name="ruta">6</SimpleData>
+		<SimpleData name="py">48</SimpleData>
+		<SimpleData name="id">6_48</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.5507059332315,62.2731754503085</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436835</SimpleData>
+		<SimpleData name="y">6901035</SimpleData>
+		<SimpleData name="val_sel">13</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">49</SimpleData>
+		<SimpleData name="id">7_49</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7845857411782,62.2357388132513</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436715</SimpleData>
+		<SimpleData name="y">6900965</SimpleData>
+		<SimpleData name="val_sel">43</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">50</SimpleData>
+		<SimpleData name="id">7_50</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7823026605082,62.2350903794502</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436265</SimpleData>
+		<SimpleData name="y">6900785</SimpleData>
+		<SimpleData name="val_sel">19</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">51</SimpleData>
+		<SimpleData name="id">7_51</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7737119264107,62.233398792913</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436435</SimpleData>
+		<SimpleData name="y">6900635</SimpleData>
+		<SimpleData name="val_sel">11</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">52</SimpleData>
+		<SimpleData name="id">7_52</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7770364128267,62.2320815167955</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436805</SimpleData>
+		<SimpleData name="y">6900525</SimpleData>
+		<SimpleData name="val_sel">15</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">53</SimpleData>
+		<SimpleData name="id">7_53</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7841928772428,62.2311568884325</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436375</SimpleData>
+		<SimpleData name="y">6900265</SimpleData>
+		<SimpleData name="val_sel">14</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">54</SimpleData>
+		<SimpleData name="id">7_54</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7760168931351,62.2287508756499</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">437115</SimpleData>
+		<SimpleData name="y">6900205</SimpleData>
+		<SimpleData name="val_sel">8</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">55</SimpleData>
+		<SimpleData name="id">7_55</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7902703773957,62.2283372344105</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">436365</SimpleData>
+		<SimpleData name="y">6900095</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">7</SimpleData>
+		<SimpleData name="py">56</SimpleData>
+		<SimpleData name="id">7_56</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.7758863856868,62.227223559342</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">428725</SimpleData>
+		<SimpleData name="y">6883505</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">57</SimpleData>
+		<SimpleData name="id">8_57</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6356847963591,62.0769737533354</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">429005</SimpleData>
+		<SimpleData name="y">6883475</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">58</SimpleData>
+		<SimpleData name="id">8_58</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6410546745643,62.0767573070661</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">429545</SimpleData>
+		<SimpleData name="y">6883465</SimpleData>
+		<SimpleData name="val_sel">37</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">59</SimpleData>
+		<SimpleData name="id">8_59</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6513916111393,62.0767687550282</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">428725</SimpleData>
+		<SimpleData name="y">6883315</SimpleData>
+		<SimpleData name="val_sel">11</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">60</SimpleData>
+		<SimpleData name="id">8_60</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6357612989314,62.0752687056199</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">428635</SimpleData>
+		<SimpleData name="y">6883305</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">61</SimpleData>
+		<SimpleData name="id">8_61</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6340432665356,62.0751619609061</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">429075</SimpleData>
+		<SimpleData name="y">6883255</SimpleData>
+		<SimpleData name="val_sel">9</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">62</SimpleData>
+		<SimpleData name="id">8_62</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.642482272166,62.0747961961988</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">429495</SimpleData>
+		<SimpleData name="y">6882985</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">63</SimpleData>
+		<SimpleData name="id">8_63</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6506260156201,62.0724519019564</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">428625</SimpleData>
+		<SimpleData name="y">6882635</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">8</SimpleData>
+		<SimpleData name="py">64</SimpleData>
+		<SimpleData name="id">8_64</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6341219971414,62.0691475342837</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">427395</SimpleData>
+		<SimpleData name="y">6871595</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">65</SimpleData>
+		<SimpleData name="id">9_65</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6151010118795,61.9698408889571</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">427395</SimpleData>
+		<SimpleData name="y">6871355</SimpleData>
+		<SimpleData name="val_sel">16</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">66</SimpleData>
+		<SimpleData name="id">9_66</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6151986615488,61.9676871292861</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">426625</SimpleData>
+		<SimpleData name="y">6871335</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">67</SimpleData>
+		<SimpleData name="id">9_67</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6005257780766,61.9673594237739</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">426705</SimpleData>
+		<SimpleData name="y">6871255</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">68</SimpleData>
+		<SimpleData name="id">9_68</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6020839262033,61.9666569804772</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">427345</SimpleData>
+		<SimpleData name="y">6871215</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">69</SimpleData>
+		<SimpleData name="id">9_69</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6143023322435,61.9664211919636</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">426725</SimpleData>
+		<SimpleData name="y">6871115</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">70</SimpleData>
+		<SimpleData name="id">9_70</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6025227170027,61.9654044923561</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">426765</SimpleData>
+		<SimpleData name="y">6870845</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">71</SimpleData>
+		<SimpleData name="id">9_71</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6033960864771,61.962989250563</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">427195</SimpleData>
+		<SimpleData name="y">6870795</SimpleData>
+		<SimpleData name="val_sel">6</SimpleData>
+		<SimpleData name="ruta">9</SimpleData>
+		<SimpleData name="py">72</SimpleData>
+		<SimpleData name="id">9_72</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.6116137863865,61.9626233449505</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416705</SimpleData>
+		<SimpleData name="y">6899605</SimpleData>
+		<SimpleData name="val_sel">68</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">73</SimpleData>
+		<SimpleData name="id">10_73</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.3980852233729,62.2189762239388</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417575</SimpleData>
+		<SimpleData name="y">6899555</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">74</SimpleData>
+		<SimpleData name="id">10_74</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4148327918401,62.2187197211345</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">416885</SimpleData>
+		<SimpleData name="y">6899465</SimpleData>
+		<SimpleData name="val_sel">22</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">75</SimpleData>
+		<SimpleData name="id">10_75</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4016117891078,62.2177599503008</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417435</SimpleData>
+		<SimpleData name="y">6899225</SimpleData>
+		<SimpleData name="val_sel">17</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">76</SimpleData>
+		<SimpleData name="id">10_76</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4122971504813,62.2157278985848</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417075</SimpleData>
+		<SimpleData name="y">6899215</SimpleData>
+		<SimpleData name="val_sel">10</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">77</SimpleData>
+		<SimpleData name="id">10_77</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4053823603256,62.215558785781</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417055</SimpleData>
+		<SimpleData name="y">6899065</SimpleData>
+		<SimpleData name="val_sel">7</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">78</SimpleData>
+		<SimpleData name="id">10_78</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4050689663491,62.2142084423352</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417615</SimpleData>
+		<SimpleData name="y">6899045</SimpleData>
+		<SimpleData name="val_sel">70</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">79</SimpleData>
+		<SimpleData name="id">10_79</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4158415791753,62.2141523453637</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#NWStateCountyPolysOGR">
+		<SimpleData name="x">417095</SimpleData>
+		<SimpleData name="y">6898835</SimpleData>
+		<SimpleData name="val_sel">11</SimpleData>
+		<SimpleData name="ruta">10</SimpleData>
+		<SimpleData name="py">80</SimpleData>
+		<SimpleData name="id">10_80</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><coordinates>13.4059465970522,62.2121535313747</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>
