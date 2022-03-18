@@ -7,4 +7,4 @@ lav.val<-spatSample(lav,size=10000000)
 lav.val1<-na.omit(lav.val$lichen_map_swe2020)
 lav.class<-ifelse(lav.val1>10,1,0)
 prop.table(table(lav.class))
-#test
+#teste das mal!
